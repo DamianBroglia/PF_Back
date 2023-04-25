@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Caminata al Glaciar Viedma",
+    "duration": "8 horas",
+    "imagen": "https://www.patagonia-argentina.com/wp-content/uploads/2017/12/glaciar-viedma.jpg",
+    "description": "Únete a nosotros en una caminata espectacular al Glaciar Viedma, uno de los glaciares más grandes de la Patagonia. Disfruta de las impresionantes vistas mientras recorremos el paisaje del Parque Nacional Los Glaciares."
+  },
+  {
+    "name": "Excursión en Barco por el Canal de Beagle",
+    "duration": "4 horas",
+    "imagen": "https://media.tacdn.com/media/attractions-splice-spp-674x446/06/6d/1d/36.jpg",
+    "description": "Embárcate en una aventura única a través del Canal de Beagle, uno de los lugares más icónicos de la Patagonia. Verás pingüinos, lobos marinos y aves de todo tipo en su hábitat natural mientras disfrutas del paisaje circundante."
+  },
+  {
+    "name": "Trekking al Cerro Torre",
+    "duration": "10 horas",
+    "imagen": "https://www.patagonia-argentina.com/wp-content/uploads/2017/12/Cerro-Torre.jpg",
+    "description": "Experimenta el desafío de una subida al Cerro Torre, la montaña más icónica de la Patagonia. Esta caminata exigente te llevará a través de los glaciares y arroyos más bellos de la región, todo mientras disfrutas de vistas impresionantes."
+  },
+  {
+    "name": "Visita al Parque Nacional Tierra del Fuego",
+    "duration": "6 horas",
+    "imagen": "https://www.patagonia-argentina.com/wp-content/uploads/2017/12/parque-nacional-tierra-del-fuego.jpg",
+    "description": "Explora la belleza natural del Parque Nacional Tierra del Fuego, ubicado en la región más austral de la Patagonia. Descubre sus lagos cristalinos, bosques frondosos y su variada fauna autóctona en esta excursión guiada."
+  },
+  {
+    "name": "Cabalgata en la Estancia Cristina",
+    "duration": "5 horas",
+    "imagen": "https://www.patagonia-argentina.com/wp-content/uploads/2017/12/estancia-cristina-2.jpg",
+    "description": "Descubre la Patagonia de una forma diferente, a caballo en la Estancia Cristina. Recorre el paisaje más espectacular de la región, con vistas panorámicas del Lago Argentino, los Andes y los glaciares. Esta es una experiencia única e inolvidable."
+  }
+]
