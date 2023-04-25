@@ -1,0 +1,70 @@
+[
+    {
+      "name": "Paquete de turismo en Playa del Carmen",
+      "location": "Playa del Carmen, México",
+      "price": 1500,
+      "duracion": 7,
+      "imagen": [
+        "https://example.com/image1.jpg",
+        "https://example.com/image2.jpg",
+        "https://example.com/image3.jpg"
+      ],
+      "descripcion": "Disfruta de una semana inolvidable en Playa del Carmen, hospedándote en el Hotel Riviera Maya. Incluye todas las comidas en el restaurante del hotel y actividades como tour en lancha por la costa, visita a las ruinas mayas de Tulum y masajes relajantes en el spa del hotel. Cupos limitados. Fechas disponibles: del 1 al 7 de agosto de 2023.",
+      "cupos": 10,
+      "date": {
+        "start": "2023-08-01",
+        "end": "2023-08-07"
+      }
+    },
+    {
+      "name": "Paquete de turismo en Madrid",
+      "location": "Madrid, España",
+      "price": 2500,
+      "duracion": 10,
+      "imagen": [
+        "https://example.com/image4.jpg",
+        "https://example.com/image5.jpg",
+        "https://example.com/image6.jpg"
+      ],
+      "descripcion": "Recorre la hermosa ciudad de Madrid durante 10 días con este paquete de turismo. Hospédate en el Hotel Ritz Madrid y disfruta de comidas típicas españolas en los mejores restaurantes de la ciudad. Incluye visita al Palacio Real, tour en bicicleta por el Retiro y una experiencia gastronómica en el mercado de San Miguel. Cupos limitados. Fechas disponibles: del 15 al 24 de septiembre de 2023.",
+      "cupos": 8,
+      "date": {
+        "start": "2023-09-15",
+        "end": "2023-09-24"
+      }
+    },
+    {
+        "name": "Paquete de turismo en Bali",
+        "location": "Bali, Indonesia",
+        "price": 1800,
+        "duracion": 8,
+        "imagen": [
+          "https://example.com/image7.jpg",
+          "https://example.com/image8.jpg",
+          "https://example.com/image9.jpg"
+        ],
+        "descripcion": "Vive una experiencia única en Bali durante 8 días. Hospédate en el Hotel Ayana Resort and Spa y disfruta de las playas paradisíacas de la isla, la cultura local y la gastronomía balinesa. Incluye una sesión de yoga en el amanecer, una visita al templo Uluwatu y una cena en la playa con música en vivo. Cupos limitados. Fechas disponibles: del 10 al 17 de noviembre de 2023.",
+        "cupos": 12,
+        "date": {
+          "start": "2023-11-10",
+          "end": "2023-11-17"
+        }
+      },
+      {
+        "name": "Paquete de turismo en Cusco",
+        "location": "Cusco, Perú",
+        "price": 2000,
+        "duracion": 9,
+        "imagen": [
+          "https://example.com/image10.jpg",
+          "https://example.com/image11.jpg",
+          "https://example.com/image12.jpg"
+        ],
+        "descripcion": "Explora la ciudadela inca de Machu Picchu y mucho más en este paquete de turismo en Cusco. Hospédate en el Hotel Palacio del Inka y disfruta de las comidas típicas peruanas en los mejores restaurantes de la ciudad. Incluye una visita guiada al Valle Sagrado, una clase de cocina andina y un recorrido nocturno por la ciudad. Cupos limitados. Fechas disponibles: del 2 al 10 de enero de 2024.",
+        "cupos": 6,
+        "date": {
+          "start": "2024-01-02",
+          "end": "2024-01-10"
+        }
+      }
+  ]
