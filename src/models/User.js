@@ -19,6 +19,18 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        lastName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        social: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+        socialRed: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     },
     {
         timestamps: false
