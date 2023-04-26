@@ -32,4 +32,13 @@ const postPackageHandler = async (req, res) =>{
     }
 }
 
-module.exports = {postPackageHandler};
+const getPackageHandler = async(req, res) => {
+    try {
+        const packages = getPackages();
+        res.status(200).json(packages)
+    } catch (error){
+        res.satus(400).json({error: error.message})
+    }
+}
+
+module.exports = {postPackageHandler, getPackageHandler};
