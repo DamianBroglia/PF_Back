@@ -1,11 +1,11 @@
 const {Router} = require("express");
 // const router = express.Router();
-const { postUser } = require("../controllers/users/postUser.js")
-const {getUser} = require("../controllers/users/getUser.js")
+const {postUserHandler} = require("../handlers/userHandler")
+const {getUserByIdHandler} = require("../handlers/userHandler")
 const userRouter = Router();
 
 // router.post("/", postUser)
-userRouter.post("/", postUser);
-userRouter.get("/:id", getUser);
+userRouter.post("/", postUserHandler);
+userRouter.get("/:id", getUserByIdHandler);
 
 module.exports = userRouter;
