@@ -1,8 +1,8 @@
 const {Router} = require("express");
-const { postPackage } = require("../controllers/users/postPackage");
+const { postPackageHandler } = require("../handlers/packageHandlers");
 const  pacakgeRouter = Router();
 
-pacakgeRouter.post("/", postPackage)
+pacakgeRouter.post("/", postPackageHandler)
 
 module.exports = pacakgeRouter;
 
