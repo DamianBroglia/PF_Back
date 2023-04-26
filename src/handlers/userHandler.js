@@ -1,5 +1,6 @@
 const { getUserqById } = require("../controllers/users/users/getUserById")
 const {postUser} = require("../controllers/users/users/postUser")
+const { getUserById } = require("../controllers/users/users/getUserById")
 
 const postUserHandler = async(req, res) =>{
     try {

@@ -1,7 +1,9 @@
-const {postPackage} = require("../controllers/users/package/postPackage")
+const { postPackage } = require("../controllers/users/package/postPackage")
+const { getPackages } = require("../controllers/users/package/getPackages")
 
-const postPackageHandler = async (req, res) =>{
-    try{
+
+const postPackageHandler = async (req, res) => {
+    try {
         const {
             name,
             location,
@@ -14,7 +16,7 @@ const postPackageHandler = async (req, res) =>{
             hotel,
             restaurant,
             activities,
-          } = req.body;
+        } = req.body;
         const newPackage = await postPackage(name,
             location,
             price,
@@ -26,19 +28,20 @@ const postPackageHandler = async (req, res) =>{
             hotel,
             restaurant,
             activities,);
-    res.status(200).json(newPackage)
-    } catch (error){
-        res.status(400).json({error: error.message})
+        res.status(200).json(newPackage)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 }
 
-const getPackageHandler = async(req, res) => {
+const getPackageHandler = async (req, res) => {
     try {
-        const packages = getPackages();
+        const packages = await getPackages();
+        console.log(packages);
         res.status(200).json(packages)
-    } catch (error){
-        res.satus(400).json({error: error.message})
+    } catch (error) {
+        res.status(400).json({ error: error.message })
     }
 }
 
-module.exports = {postPackageHandler, getPackageHandler};
+module.exports = { postPackageHandler, getPackageHandler };

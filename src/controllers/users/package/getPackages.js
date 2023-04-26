@@ -1,8 +1,10 @@
-const {Package} = require("../../../db");
+const { Package } = require("../../../db");
 
-const getPackages = async ()=>{
+const getPackages = async () => {
     const packages = await Package.findAll()
-    return packages
+    const packArray = packages.map(e => e.dataValues)
+    console.log(packArray);
+    return packArray
 }
 
-module.exports = getPackages;
+module.exports = { getPackages };

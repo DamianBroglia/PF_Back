@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { User, UserInfo } = require("../../../db");
+const { User } = require("../../../db");
 
 const postUser = async (
   userName,
@@ -22,11 +22,6 @@ const postUser = async (
       social,
       socialRed,
     });
-    // obj = { userName, email, password }
-    // objTwo = { lastName, social, socialRed }
-    // await User.create(obj)
-    // await UserInfo.create(objTwo)
-    // res.status(200).json(obj)
     return(newUserDb)
   }
 };
