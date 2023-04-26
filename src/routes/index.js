@@ -6,6 +6,7 @@ const router = Router();
 const packageRouter = require("./packageRouter")
 const userRouter = require("./userRouter")
 const userGet  = require("./userRouter")
+const activityRouter = require("./activityRouter")
 
 // Configurar los routers
 //User 
@@ -15,5 +16,8 @@ router.use("/user", userRouter)
 
 //Package
 router.use("/package", packageRouter)
+
+//Activity
+router.use("/activity", activityRouter)
 
 module.exports = router;
