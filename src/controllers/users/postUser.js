@@ -7,7 +7,7 @@ const postUser = async (req, res) => {
         const findUser = await User.findAll()
         const userExists = findUser.find(e => e.email === email)
         if (userExists) {
-            res.status(400).end("Ya estás registrado con ese correo electronico")
+            res.status(400).end("You are already registered with that emailw")
         } else {
             obj = { userName, email, password }
             objTwo = { lastName, social, socialRed }
