@@ -6,7 +6,8 @@ const router = Router();
 const packageRouter = require("./packageRouter")
 const userRouter = require("./userRouter")
 const userGet  = require("./userRouter")
-const activityRouter = require("./activityRouter")
+const activityRouter = require("./activityRouter");
+const hotelRouter = require("./hotelRouter");
 
 const commentsRouter = require("./commentsRouter")
 
@@ -26,11 +27,16 @@ router.use("/package", packageRouter)
 router.use("/activity", activityRouter)
 
 
+//Hotel
+router.use("/hotel", hotelRouter)
+
+
 //Comments
 router.use("/comments", commentsRouter)
 
 //Restaurant
 router.use("/restaurant", restaurantRouter)
+
 
 
 module.exports = router;
