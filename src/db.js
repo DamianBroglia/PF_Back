@@ -30,7 +30,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const {Activity, Comment, Hotel, Package, Reservation, Restaurant, User, Userinfo} = sequelize.models
 
-
+User.hasMany(Comment)
+Comment.belongsTo(User)
 
 
 module.exports = {
