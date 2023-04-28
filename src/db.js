@@ -39,14 +39,14 @@ Comment.belongsTo(Package)
 User.hasMany(Reservation)
 Reservation.belongsTo(User)
 
-Package.hasMany(Restaurant)
-Restaurant.belongsToMany(Package)
+Package.belongsToMany(Restaurant, { through: "packageRestaurant" })
+Restaurant.belongsToMany(Package, { through: "packageRestaurant" })
 
-Package.hasMany(Activity)
-Activity.belongsToMany(Package)
+Package.belongsToMany(Activity, { through: "packageActivity" })
+Activity.belongsToMany(Package, { through: "packageActivity" })
 
-Package.hasOne(Hotel)
-Hotel.belongsToMany(Package)
+Hotel.hasMany(Package)
+Package.belongsTo(Hotel)
 
 User.hasMany(Package)
 Package.belongsTo(User)
