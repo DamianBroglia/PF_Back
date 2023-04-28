@@ -35,8 +35,12 @@ module.exports = (sequelize) => {
             type: DataTypes.FLOAT,
             allowNull: false,
         },
-        date: {
-            type: DataTypes.STRING,
+        dateInit: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        dateEnd: {
+            type: DataTypes.INTEGER,
             allowNull: false,
         }
 

@@ -19,6 +19,15 @@ module.exports = (sequelize) => {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false,
         },
+        //Pensandolo mejor, que el menú este en la descripcion
+        // menu: {
+        //     type: DataTypes.ARRAY(DataTypes.STRING),
+        //     allowNull: false,
+        // },
+        price: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },        
         description: {
             type: DataTypes.STRING,
             allowNull: false,
