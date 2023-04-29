@@ -17,7 +17,7 @@ const getAllActivityHandler = async (req, res) => {
           ? res.status(200).send(filteredActivityByName)
           : res.status(404).send("The activity do not exists");
   } else {
-      res.status(200).send(packages)
+      res.status(200).send(AllActivity)
   }
 
 

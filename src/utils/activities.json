@@ -20,7 +20,7 @@
     "duration": 10,
     "img": ["https://www.patagonia-argentina.com/wp-content/uploads/2017/12/Cerro-Torre.jpg"],
     "description": "Experimenta el desafío de una subida al Cerro Torre, la montaña más icónica de la Patagonia.",
-    "typeAct": "traking",
+    "typeAct": "treking",
     "price": 4000
   },
   {
@@ -36,7 +36,7 @@
     "duration": 5,
     "img": ["https://www.patagonia-argentina.com/wp-content/uploads/2017/12/estancia-cristina-2.jpg"],
     "description": "Descubre la Patagonia de una forma diferente, a caballo en la Estancia Cristina.",
-    "typeAct": "Show",
+    "typeAct": "show",
     "price": 3700
   }
 ]
