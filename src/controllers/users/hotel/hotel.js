@@ -18,17 +18,17 @@ const getHotelById = async (id) => {
 
 const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
     const dataBaseHotels = await Hotel.findAll()
-    const hotels = dataBaseHotels.map(e => e.dataValues)
-    const filterTrue = false;
+    let hotels = dataBaseHotels.map(e => e.dataValues)
+    let filterTrue = false;
     if (!starsMin, !starsMax, !priceMin, !priceMax) {
         throw new Error("Debes pasar parametros para filtrar")
     } else {
         if (starsMin, starsMax) {
-            hotels = hotels.filter(e => e.stars > starsMin && e.stars < starsMax)
+            hotels = hotels.filter(e => e.stars >= starsMin && e.stars <= starsMax)
             filterTrue = true
         }
         if (priceMin, priceMax) {
-            hotels = hotels.filter(e => e.priceDay > priceMin && e.priceDay < priceMax)
+            hotels = hotels.filter(e => e.priceDay >= priceMin && e.priceDay <= priceMax)
             filterTrue = true
         }
         if (filterTrue) {

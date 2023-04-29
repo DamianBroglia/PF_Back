@@ -11,7 +11,7 @@ restaurantRouter.post("/", postRestaurantHandler)
 
 restaurantRouter.get("/", getRestaurantsHanlder)
 
-restaurantRouter.get("/:id", getRestaurantByIdHanlder)
+restaurantRouter.get("/byId/:id", getRestaurantByIdHanlder)
 
 restaurantRouter.get("/filter", filterRestaurantHanlder)
 

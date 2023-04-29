@@ -13,9 +13,9 @@ commentsRouter.post("/", postCommentHandler);
 
 commentsRouter.get("/", getACommentsHandler);
 
-commentsRouter.get("/:userId", getCommentByUserIdHandler);
+commentsRouter.get("/byUser/:userId", getCommentByUserIdHandler);
 
-commentsRouter.get("/:packageId", getCommentByPackageIdHandler);
+commentsRouter.get("/byPackage/:packageId", getCommentByPackageIdHandler);
 
 commentsRouter.delete("/:userId/:id", deleteCommentHandler)
 
