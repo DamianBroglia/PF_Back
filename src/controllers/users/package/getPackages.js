@@ -1,9 +1,13 @@
-const { Package, Activity, Restaurant } = require("../../../db");
+const { Package, Activity, Restaurant, Hotel } = require("../../../db");
 
 const getPackages = async () => {
     const packages = await Package.findAll({
-        include: Activity && Restaurant
-    })
+        include: [
+            {model: Restaurant},
+            {model: Activity},
+            {model: Hotel}
+        ]
+    },)
     const packArray = packages.map(e => e.dataValues)
     return packArray
 }
