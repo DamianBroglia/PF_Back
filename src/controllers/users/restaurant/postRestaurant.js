@@ -1,6 +1,6 @@
 const { Restaurant } = require("../../../db");
 
-const postRestaurant = async (name, location, img, description) => {
+const postRestaurant = async (name, location, img, description, price) => {
   const findRestaurant = await Restaurant.findAll();
   const restaurantExist = findRestaurant.find((e) => e.name === name);
   if (restaurantExist) {
@@ -11,6 +11,7 @@ const postRestaurant = async (name, location, img, description) => {
       location,
       img,
       description,
+      price
     });
     return newRestaurantDb
   }

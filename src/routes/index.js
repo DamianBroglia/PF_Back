@@ -4,7 +4,6 @@ const router = Router();
 //importamos los routers
 const packageRouter = require("./packageRouter")
 const userRouter = require("./userRouter")
-const userGet  = require("./userRouter")
 const activityRouter = require("./activityRouter");
 const hotelRouter = require("./hotelRouter");
 const commentsRouter = require("./commentsRouter")

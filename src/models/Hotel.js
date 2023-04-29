@@ -30,6 +30,11 @@ module.exports = (sequelize) => {
           type: DataTypes.FLOAT,
           allowNull: false,
       }, 
+    priceDay: {
+          type: DataTypes.INTEGER,
+          allowNull: false,
+      }, 
+
     },
     {
         timestamps: false

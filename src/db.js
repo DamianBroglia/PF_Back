@@ -28,10 +28,28 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const {Activity, Comment, Hotel, Package, Reservation, Restaurant, User, Userinfo} = sequelize.models
+const {Activity, Comment, Hotel, Package, Reservation, Restaurant, User} = sequelize.models
 
 User.hasMany(Comment)
 Comment.belongsTo(User)
+
+Package.hasMany(Comment)
+Comment.belongsTo(Package)
+
+User.hasMany(Reservation)
+Reservation.belongsTo(User)
+
+Package.belongsToMany(Restaurant, { through: "packageRestaurant" })
+Restaurant.belongsToMany(Package, { through: "packageRestaurant" })
+
+Package.belongsToMany(Activity, { through: "packageActivity" })
+Activity.belongsToMany(Package, { through: "packageActivity" })
+
+Hotel.hasMany(Package)
+Package.belongsTo(Hotel)
+
+User.hasMany(Package)
+Package.belongsTo(User)
 
 
 module.exports = {

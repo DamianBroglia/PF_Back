@@ -11,7 +11,12 @@
       ],
       "description": "Disfruta de una semana inolvidable en Playa del Carmen, hospedándote en el Hotel Riviera Maya.",
       "quotas": 10,
-      "date": "2023-08-01 - 2023-08-07"
+      "dateInit": "2023-08-01",
+      "dateEnd": "2023-08-07",
+      "userId": 1,
+      "restaurantId": 1,
+      "activityId": 1,
+      "hotelId": 1
     },
     {
       "name": "Paquete 2",
@@ -25,7 +30,12 @@
       ],
       "description": "Recorre la hermosa ciudad de Madrid durante 10 días con este paquete de turismo.",
       "quotas": 8,
-      "date": "2023-09-15 - 2023-09-24"
+      "dateInit": "2023-06-20",
+      "dateEnd": "2023-06-26",
+      "userId": 2,
+      "restaurantId": 2,
+      "activityId": 2,
+      "hotelId": 2
     },
     {
         "name": "Paquete 3",
@@ -39,7 +49,12 @@
         ],
         "description": "Vive una experiencia única en Bali durante 8 días. Hospédate en el Hotel Ayana Resort and Spa y disfruta de las playas paradisíacas de la isla, la cultura local y la gastronomía balinesa.",
         "quotas": 12,
-        "date": "2023-11-10 - 2023-11-17"
+        "dateInit": "2023-08-01",
+        "dateEnd": "2023-08-09",
+        "userId": 3,
+        "restaurantId": 3,
+        "activityId": 3,
+        "hotelId": 1
       },
       {
         "name": "Paquete 4",
@@ -53,6 +68,11 @@
         ],
         "description": "Explora la ciudadela inca de Machu Picchu y mucho más en este paquete de turismo en Cusco. ",
         "quotas": 6,
-        "date": "2024-01-02 - 2024-01-10"
+        "dateInit": "2024-01-11",
+        "dateEnd": "2024-01-17",
+        "userId": 1,
+        "restaurantId": 3,
+        "activityId": 3,
+        "hotelId": 1
       }
   ]
