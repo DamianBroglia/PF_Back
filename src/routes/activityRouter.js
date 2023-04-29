@@ -11,7 +11,7 @@ activityRouter.post("/", createActivityHandler);
 
 activityRouter.get("/", getAllActivityHandler);
 
-activityRouter.get("/:id", getActivityByIdHandler);
+activityRouter.get("/byId/:id", getActivityByIdHandler);
 
 activityRouter.get("/filter", filterActivityHandler)
 

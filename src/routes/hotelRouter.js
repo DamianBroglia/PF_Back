@@ -12,7 +12,7 @@ hotelRouter.post("/",  createHotelHandler);
 
 hotelRouter.get("/", getAllHotelHandler);
 
-hotelRouter.get("/:id", getHotelByIdHandler);
+hotelRouter.get("/byId/:id", getHotelByIdHandler);
 
 hotelRouter.get("/filter", filterHotelHandler)
 
