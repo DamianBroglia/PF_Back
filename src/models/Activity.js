@@ -24,7 +24,7 @@ module.exports = (Sequelize) => {
             allowNull: false,
         },
         type: {
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM("treking", "bike", "travel", "relax", "show"),
             allowNull: false,
         },
         price: {

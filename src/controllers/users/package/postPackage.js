@@ -9,9 +9,10 @@ const postPackage = async (
   description,
   quotas,
   date,
-  hotel,
-  restaurant,
-  activities
+  hotelId,
+  restaurantId,
+  activitiesId,
+  userId
 ) => {
   const findPackage = await Package.findAll();
   const packageExists = findPackage.find((e) => e.name === name);
@@ -27,10 +28,11 @@ const postPackage = async (
       description,
       quotas,
       date,
-      hotel,
-      restaurant,
-      activities,
+      hotelId,
+      userId
     });
+    await newPackageDb.addActivity(activitiesId)
+    await newPackageDb.addRestaurant(restaurantId)
     return newPackageDb;
   }
 };
