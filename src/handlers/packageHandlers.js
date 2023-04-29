@@ -1,5 +1,6 @@
 const { postPackage } = require("../controllers/users/package/postPackage")
-const { getPackages } = require("../controllers/users/package/getPackages")
+const { getPackages } = require("../controllers/users/package/getPackages");
+const { filterPackages } = require("../controllers/users/package/getPakagesFiltered");
 
 
 const postPackageHandler = async (req, res) => {
@@ -57,4 +58,17 @@ const getPackageHandler = async (req, res) => {
     }
 }
 
-module.exports = { postPackageHandler, getPackageHandler };
+const getPackageFiltered = async (req, res) => {
+    try {
+        let packages = req.body[1];
+        let params = req.body[0];
+
+        packages = filterPackages(packages, params);
+        
+        res.status(200).send(packages)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
+module.exports = { postPackageHandler, getPackageHandler, getPackageFiltered };
