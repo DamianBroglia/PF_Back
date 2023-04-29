@@ -2,36 +2,41 @@
   {
     "name": "Hotel 1",
     "location": "El Calafate, Santa Cruz, Argentina",
-    "img": ["https://www.visitargentina.com/img/101010/r-1920-1080-hotel-lago-argentino.jpg"],
+    "image": ["https://www.visitargentina.com/img/101010/r-1920-1080-hotel-lago-argentino.jpg"],
     "description": "Disfruta de una estadía inolvidable con vistas al lago Argentino y los glaciares cercanos.",
-    "stars": 4
+    "stars": 4,
+    "priceDay": 1500
   },
   {
     "name": "Hostel 2",
     "location": "Bariloche, Río Negro, Argentina",
-    "img": ["https://media-cdn.tripadvisor.com/media/photo-s/0c/0d/20/b8/hospedaje-del-bosque.jpg"],
+    "image": ["https://media-cdn.tripadvisor.com/media/photo-s/0c/0d/20/b8/hospedaje-del-bosque.jpg"],
     "description": "Descubre la tranquilidad de la Patagonia en medio del bosque andino.",
-    "stars": 3
+    "stars": 3,
+    "priceDay": 2500
   },
   {
     "name": "Hotel 3",
     "location": "Puerto Madryn, Chubut, Argentina",
-    "img": ["https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/25/8a/e2/edificio-hotel-san-martin.jpg"],
+    "image": ["https://media-cdn.tripadvisor.com/media/photo-m/1280/1a/25/8a/e2/edificio-hotel-san-martin.jpg"],
     "description": "Disfruta de una experiencia única en la costa patagónica, cerca de la reserva natural de ballenas.",
-    "stars": 2
+    "stars": 2,
+    "priceDay": 4000
   },
   {
     "name": "Hostel 4",
     "location": "El Chaltén, Santa Cruz, Argentina",
-    "img": ["https://www.hosteriadelglaciar.com.ar/wp-content/uploads/2018/02/Hosteria-del-Glaciar-El-Chalten1.jpg"],
+    "image": ["https://www.hosteriadelglaciar.com.ar/wp-content/uploads/2018/02/Hosteria-del-Glaciar-El-Chalten1.jpg"],
     "description": "Sumérgete en la naturaleza virgen de los glaciares, en el corazón de la Patagonia argentina.",
-    "stars": 5
+    "stars": 5,
+    "priceDay": 2700
   },
   {
     "name": "Hotel 5",
     "location": "Ushuaia, Tierra del Fuego, Argentina",
-    "img": ["https://www.hotelaustral.com.ar/wp-content/uploads/2019/08/hotel-austral-ushuaia-14.jpg"],
+    "image": ["https://www.hotelaustral.com.ar/wp-content/uploads/2019/08/hotel-austral-ushuaia-14.jpg"],
     "description": "Vive la experiencia de estar en el fin del mundo, rodeado de la majestuosidad de la Tierra del Fuego.",
-    "stars": 4
+    "stars": 4,
+    "priceDay": 1200
   }
 ]

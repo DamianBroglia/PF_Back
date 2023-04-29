@@ -16,8 +16,8 @@ const getAllActivityHandler = async (req, res) => {
 
 const createActivityHandler = async (req, res) => {
   try {
-    const { name, duration, img, description, type, price } = req.body;
-    const newActivity = await createActivity(name, duration, img, description, type, price);
+    const { name, duration, img, description, typeAct, price } = req.body;
+    const newActivity = await createActivity(name, duration, img, description, typeAct, price);
     res.status(200).json(newActivity);
   } catch (error) {
     console.log(error);

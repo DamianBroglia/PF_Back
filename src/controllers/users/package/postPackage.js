@@ -8,7 +8,8 @@ const postPackage = async (
   img,
   description,
   quotas,
-  date,
+  dateInit,
+  dateEnd,
   hotelId,
   restaurantId,
   activitiesId,
@@ -27,7 +28,8 @@ const postPackage = async (
       img,
       description,
       quotas,
-      date,
+      dateInit,
+      dateEnd,
       hotelId,
       userId
     });

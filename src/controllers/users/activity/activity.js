@@ -1,7 +1,7 @@
 const { Activity } = require("../../../db")
 
-const createActivity = async (name, duration, img, description, price, type) => {
-    let activityCreate = await Activity.create({ name, duration, img, description, price, type })
+const createActivity = async (name, duration, img, description, typeAct, price) => {
+    let activityCreate = await Activity.create({ name, duration, img, description, typeAct, price})
     return activityCreate
 }
 

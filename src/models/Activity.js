@@ -23,7 +23,7 @@ module.exports = (Sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        type: {
+        typeAct: {
             type: DataTypes.ENUM("treking", "bike", "travel", "relax", "show"),
             allowNull: false,
         },

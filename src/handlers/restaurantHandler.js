@@ -7,6 +7,9 @@ const {
 const {
   getRestaurantById,
 } = require("../controllers/users/restaurant/getRestaurantById");
+const {
+  filterRestaurant,
+} = require("../controllers/users/restaurant/filterRestaurant");
 
 const postRestaurantHandler = async (req, res) => {
   try {
@@ -43,6 +46,21 @@ const getRestaurantByIdHanlder = async (req, res) => {
   }
 };
 
+const filterRestaurantHanlder = async (req, res) => {
+  try {
+    const {priceMin, priceMax} = req.body
+    const restaurant = await filterRestaurant(priceMin, priceMax);
+    res.status(200).json(restaurant);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 
-module.exports = { postRestaurantHandler, getRestaurantsHanlder, getRestaurantByIdHanlder };
+
+module.exports = { 
+  postRestaurantHandler, 
+  getRestaurantsHanlder, 
+  getRestaurantByIdHanlder, 
+  filterRestaurantHanlder 
+};

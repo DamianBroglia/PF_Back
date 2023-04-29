@@ -1,7 +1,8 @@
 const {
   getAllHotel,
   createHotel,
-  getHotelById
+  getHotelById,
+  filterHotels
 } = require("../controllers/users/hotel/hotel");
 
 const getAllHotelHandler = async (req, res) => {
@@ -34,8 +35,20 @@ const getHotelByIdHandler = async (req, res) => {
   }
 };
 
+const filterHotelHandler = async (req, res) => {
+  try {
+    const { starsMin, starsMax, priceMin, priceMax} = req.body;
+    const filterHotels = await filterHotels(starsMin, starsMax, priceMin, priceMax);
+    res.status(200).json(filterHotels);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+
 module.exports = {
   getAllHotelHandler,
   createHotelHandler,
-  getHotelByIdHandler
+  getHotelByIdHandler,
+  filterHotelHandler
 };

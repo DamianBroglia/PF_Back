@@ -12,7 +12,7 @@ const getAllHotel = async () => {
 }
 
 const getHotelById = async (id) => {
-    const hotel = await Hotel.finByPk(id);
+    const hotel = await Hotel.findByPk(id);
     return hotel;
 }
 
@@ -28,7 +28,7 @@ const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
             filterTrue = true
         }
         if (priceMin, priceMax) {
-            hotels = hotels.filter(e => e.price > priceMin && e.price < priceMax)
+            hotels = hotels.filter(e => e.priceDay > priceMin && e.priceDay < priceMax)
             filterTrue = true
         }
         if (filterTrue) {
@@ -42,4 +42,4 @@ const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
 
 
 
-module.exports = { createHotel, getAllHotel, getHotelById }
+module.exports = { createHotel, getAllHotel, getHotelById, filterHotels }

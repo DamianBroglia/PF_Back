@@ -12,10 +12,11 @@ const postPackageHandler = async (req, res) => {
             img,
             description,
             quotas,
-            date,
-            hotel,
-            restaurant,
-            activities,
+            dateInit,
+            dateEnd,
+            hotelId,
+            restaurantId,
+            activitiesId,
         } = req.body;
         const newPackage = await postPackage(name,
             location,
@@ -24,10 +25,11 @@ const postPackageHandler = async (req, res) => {
             img,
             description,
             quotas,
-            date,
-            hotel,
-            restaurant,
-            activities,);
+            dateInit,
+            dateEnd,
+            hotelId,
+            restaurantId,
+            activitiesId,);
         res.status(200).json(newPackage)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -37,14 +39,14 @@ const postPackageHandler = async (req, res) => {
 const getPackageHandler = async (req, res) => {
     try {
         const packages = await getPackages();
-        const name = req.query.hasOwnProperty("name") 
+        const name = req.query.hasOwnProperty("name")
             ? req.query.name.toLowerCase()
             : null;
-        if (name){
-            let filteredPackageByName = packages.filter((e) => 
+        if (name) {
+            let filteredPackageByName = packages.filter((e) =>
                 e.name.toLowerCase().includes(name)
             );
-            filteredPackageByName.length > 0 
+            filteredPackageByName.length > 0
                 ? res.status(200).send(filteredPackageByName)
                 : res.status(404).send("The package do not exists");
         } else {
