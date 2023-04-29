@@ -1,8 +1,18 @@
 const { Hotel } = require("../../../db")
 
 const createHotel = async (name, location, image, description, stars, priceDay) => {
-    let hotelCreate = await Hotel.create({ name, location, image, description, stars, priceDay })
-    return hotelCreate;
+    const hotelsDataBase = await Hotel.findAll()
+    const exists = hotelsDataBase.find(e => e.name === name)
+    if (exists) {
+        throw new Error(`Ya existe un hotel con este nombre: ${name}`)
+    } else {
+        if (name && location && image && description && stars && priceDay) {
+            let hotelCreate = await Hotel.create({ name, location, image, description, stars, priceDay })
+            return hotelCreate;
+        } else {
+            throw new Error("Faltan parametros para postear un hotel")
+        }
+    }
 }
 
 const getAllHotel = async () => {

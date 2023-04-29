@@ -8,8 +8,11 @@ const postComment = async (packageId, userId, userName, rating, comment, date) =
     if (typeof comment !== "string" || comment.length < 4) {
         throw new Error("Debes escribir una reseña del lugar")
     }
-    const postComment = await Comment.create({ packageId, userId, userName, rating, comment, date })
-    return postComment;
+    if (packageId && userId && userName && rating && comment && date) {
+        const postComment = await Comment.create({ packageId, userId, userName, rating, comment, date })
+        return postComment;
+    }
+    throw new Error("Faltan Parametros para postear un comentario")
 }
 
 module.exports = { postComment };

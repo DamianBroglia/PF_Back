@@ -1,8 +1,18 @@
 const { Activity } = require("../../../db")
 
 const createActivity = async (name, duration, img, description, typeAct, price) => {
-    let activityCreate = await Activity.create({ name, duration, img, description, typeAct, price})
-    return activityCreate
+    const activityDataBase = await Activity.findAll()
+    const exists = activityDataBase.find(e => e.name === name)
+    if(exists){
+        throw new Error (`Ya existe una actividad con este nombre:${name}`)
+    }else{
+        if(name && duration && img && description && typeAct && price){
+            let activityCreate = await Activity.create({ name, duration, img, description, typeAct, price})
+            return activityCreate
+        }else{
+            throw new Error ("Faltan parametros para postear una actividad")
+        }
+    }
 }
 
 const getAllActivity = async () => {
