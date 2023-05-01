@@ -14,10 +14,10 @@ const filterPackages = (packages, params) => {
         packages = packages.filter(pk=> pk.duration >= params.minDuration);    
     }
     if (params.filterByDateInit) {
-        packages = packages.filter(pk=> pk.date[0] == params.filterByDateInit);    
+        packages = packages.filter(pk=> pk.dateInit == params.filterByDateInit);    
     }
     if (params.filterByDateFin) {
-        packages = packages.filter(pk=> pk.date[1] == params.filterByDateFin);    
+        packages = packages.filter(pk=> pk.dateEnd == params.filterByDateFin);    
     }
     return packages;    
 };

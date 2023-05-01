@@ -14,6 +14,7 @@ const postRestaurant = async (name, location, img, description, price) => {
         description,
         price
       });
+      return newRestaurantDb
     } else {
       throw new Error("Faltan parametros para postear un restaurant")
     }

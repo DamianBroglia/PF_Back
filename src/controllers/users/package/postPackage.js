@@ -1,9 +1,9 @@
 const { Package } = require("../../../db");
+ const { autoPrice } = require("./autoPricePackage")
 
 const postPackage = async (
   name,
   location,
-  price,
   duration,
   img,
   description,
@@ -20,18 +20,19 @@ const postPackage = async (
   if (packageExists) {
     return;
   } else {
+    const price = await autoPrice(duration, hotelId, restaurantId, activitiesId )
     const newPackageDb = await Package.create({
       name,
       location,
-      price,
-      duration,
       img,
+      duration,
       description,
       quotas,
       dateInit,
       dateEnd,
       hotelId,
-      userId
+      userId,
+      price
     });
     await newPackageDb.addActivity(activitiesId)
     await newPackageDb.addRestaurant(restaurantId)

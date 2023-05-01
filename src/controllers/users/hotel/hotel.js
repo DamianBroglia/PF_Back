@@ -26,27 +26,30 @@ const getHotelById = async (id) => {
     return hotel;
 }
 
-const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
+const filterHotels = async (starsMin, starsMax, descenStarsOrder, priceMin, priceMax, descenPriceOrder) => {
     const dataBaseHotels = await Hotel.findAll()
     let hotels = dataBaseHotels.map(e => e.dataValues)
     let filterTrue = false;
-    if (!starsMin, !starsMax, !priceMin, !priceMax) {
-        throw new Error("Debes pasar parametros para filtrar")
-    } else {
+    if(!starsMin && !starsMax && !priceMin && !priceMax){
+        throw new Error ("Debes pasar parametros para poder filtrar")
+    }else{
         if (starsMin, starsMax) {
-            hotels = hotels.filter(e => e.stars >= starsMin && e.stars <= starsMax)
+            if(starsMin > starsMax) throw new Error("Las estrellas minimas no pueden ser mayor que las estellas maximas")
+            hotels = hotels.filter(e => e.stars >= starsMin && e.stars <= starsMax).sort((a, b) => a.stars - b.stars)
             filterTrue = true
+            if (descenStarsOrder) hotels.reverse()
         }
         if (priceMin, priceMax) {
-            hotels = hotels.filter(e => e.priceDay >= priceMin && e.priceDay <= priceMax)
+            if(priceMin > priceMax) throw new Error("El precio minimo no puede ser superior al precio maximo")
+            hotels = hotels.filter(e => e.priceDay >= priceMin && e.priceDay <= priceMax).sort((a, b) => a.priceDay - b.priceDay)
             filterTrue = true
+            if (descenPriceOrder) hotels.reverse()
         }
         if (filterTrue) {
             return hotels
         } else {
             throw new Error("Faltan parametros para poder filtrar")
         }
-
     }
 }
 
