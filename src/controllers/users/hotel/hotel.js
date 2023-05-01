@@ -34,11 +34,13 @@ const filterHotels = async (starsMin, starsMax, descenStarsOrder, priceMin, pric
         throw new Error ("Debes pasar parametros para poder filtrar")
     }else{
         if (starsMin, starsMax) {
+            if(starsMin > starsMax) throw new Error("Las estrellas minimas no pueden ser mayor que las estellas maximas")
             hotels = hotels.filter(e => e.stars >= starsMin && e.stars <= starsMax).sort((a, b) => a.stars - b.stars)
             filterTrue = true
             if (descenStarsOrder) hotels.reverse()
         }
         if (priceMin, priceMax) {
+            if(priceMin > priceMax) throw new Error("El precio minimo no puede ser superior al precio maximo")
             hotels = hotels.filter(e => e.priceDay >= priceMin && e.priceDay <= priceMax).sort((a, b) => a.priceDay - b.priceDay)
             filterTrue = true
             if (descenPriceOrder) hotels.reverse()

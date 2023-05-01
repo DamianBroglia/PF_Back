@@ -34,15 +34,17 @@ const filterActivity = async (type, priceMin, priceMax, descenPriceOrder, durati
         throw new Error ("Debes pasar parametros para filtrar")
     }else{
         if (type) {
-            activities = activities.filter(e => e.type === type)
+            activities = activities.filter(e => e.typeAct === type)
             filterTrue = true;
         }
         if (priceMin, priceMax) {
+            if(priceMin > priceMax) throw new Error("El precio minimo no puede ser mayor que el precio maximo")
             activities = activities.filter(e => e.price >= priceMin && e.price <= priceMax).sort((a, b) => a.price - b.price)
             filterTrue = true;
             if(descenPriceOrder) activities.reverse()
         }
         if (durationMin, durationMax) {
+            if(durationMin > durationMax) throw new Error("El precio minimo no puede ser mayor al precio maximo")
             activities = filteredByPrice.filter(e = e.duration >= durationMin && e.duration <= durationMax)
             filterTrue = true;
             if(descenDurationOrder) activities.reverse()
