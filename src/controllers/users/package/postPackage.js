@@ -4,8 +4,8 @@ const { Package } = require("../../../db");
 const postPackage = async (
   name,
   location,
-  duration,
   img,
+  duration,
   description,
   quotas,
   dateInit,
@@ -13,14 +13,14 @@ const postPackage = async (
   hotelId,
   restaurantId,
   activitiesId,
-  userId
+  userId,
+  price
 ) => {
   const findPackage = await Package.findAll();
   const packageExists = findPackage.find((e) => e.name === name);
   if (packageExists) {
     return;
   } else {
-    const price = await autoPrice(duration, hotelId, restaurantId, activitiesId )
     const newPackageDb = await Package.create({
       name,
       location,

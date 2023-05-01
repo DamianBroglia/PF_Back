@@ -18,7 +18,8 @@ const postPackageHandler = async (req, res) => {
             hotelId,
             restaurantId,
             activitiesId,
-            userId
+            userId,
+            price
         } = req.body;
         const newPackage = await postPackage(name,
             location,
@@ -31,7 +32,8 @@ const postPackageHandler = async (req, res) => {
             hotelId,
             restaurantId,
             activitiesId,
-            userId);
+            userId,
+            price);
         res.status(200).json(newPackage)
     } catch (error) {
         res.status(400).json({ error: error.message })
