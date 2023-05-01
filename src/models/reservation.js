@@ -7,10 +7,6 @@ module.exports = (sequelize) => {
             primaryKey: true,
             defaultValue: DataTypes.UUIDV4,
         },
-        serviceDate: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
         dateOfPurchase: {
             type: DataTypes.DATE,
             allowNull: false,
@@ -18,7 +14,16 @@ module.exports = (sequelize) => {
         paid: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-        }
+        },
+        numOfTravels: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        totalPrice: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+
     },
     {
         timestamps: false

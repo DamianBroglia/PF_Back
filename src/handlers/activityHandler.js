@@ -49,8 +49,8 @@ const getActivityByIdHandler = async (req, res) => {
 ;
 const filterActivityHandler = async (req, res) => {
   try {
-    const { type, priceMin, priceMax, descenPriceOrder, durationMin, durationMax, descenDurationOrder} = req.body;
-    const filterActivities = await filterActivity(type, priceMin, priceMax, descenPriceOrder, durationMin, durationMax, descenDurationOrder);
+    const { type, priceMin, priceMax, durationMin, durationMax} = req.body;
+    const filterActivities = await filterActivity(type, priceMin, priceMax, durationMin, durationMax);
     res.status(200).json(filterActivities);
   } catch (error) {
     res.status(400).json({ error: error.message });

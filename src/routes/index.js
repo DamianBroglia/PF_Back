@@ -8,6 +8,7 @@ const activityRouter = require("./activityRouter");
 const hotelRouter = require("./hotelRouter");
 const commentsRouter = require("./commentsRouter")
 const restaurantRouter = require("./restaurantRouter")
+const reservationRouter = require("./reservationRouter")
 
 // Configurar los routers
 
@@ -28,5 +29,8 @@ router.use("/comments", commentsRouter)
 
 //Restaurant
 router.use("/restaurant", restaurantRouter)
+
+//Reservations
+router.use("/reservation", reservationRouter)
 
 module.exports = router;
