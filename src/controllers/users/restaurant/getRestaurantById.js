@@ -1,3 +1,4 @@
+
 const { Restaurant } = require("../../../db");
 
 const getRestaurantById = async (id) => {

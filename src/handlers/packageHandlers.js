@@ -1,6 +1,7 @@
 const { postPackage } = require("../controllers/users/package/postPackage")
 const { getPackages } = require("../controllers/users/package/getPackages");
 const { filterPackages } = require("../controllers/users/package/getPakagesFiltered");
+const { getPackageById } = require("../controllers/users/package/getPackageById");
 
 
 const postPackageHandler = async (req, res) => {
@@ -71,4 +72,14 @@ const getPackageFiltered = async (req, res) => {
     }
 }
 
-module.exports = { postPackageHandler, getPackageHandler, getPackageFiltered };
+const getPackageByIdHandler = async (req, res) => {
+    try {
+        const {id} = req.params
+        const package = await getPackageById(id)
+        res.status(200).json(package)
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+}
+
+module.exports = { postPackageHandler, getPackageHandler, getPackageFiltered, getPackageByIdHandler };
