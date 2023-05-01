@@ -48,8 +48,8 @@ const getRestaurantByIdHanlder = async (req, res) => {
 
 const filterRestaurantHanlder = async (req, res) => {
   try {
-    const {priceMin, priceMax, descenPriceOrder} = req.body
-    const restaurant = await filterRestaurant(priceMin, priceMax, descenPriceOrder);
+    const {priceMin, priceMax} = req.body
+    const restaurant = await filterRestaurant(priceMin, priceMax);
     res.status(200).json(restaurant);
   } catch (error) {
     res.status(400).json({ error: error.message });
