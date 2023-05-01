@@ -39,6 +39,9 @@ Comment.belongsTo(Package)
 User.hasMany(Reservation)
 Reservation.belongsTo(User)
 
+Package.hasMany(Reservation)
+Reservation.belongsTo(Package)
+
 Package.belongsToMany(Restaurant, { through: "packageRestaurant" })
 Restaurant.belongsToMany(Package, { through: "packageRestaurant" })
 
