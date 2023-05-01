@@ -36,14 +36,13 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         dateInit: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: false,
         },
         dateEnd: {
-            type: DataTypes.STRING,
+            type: DataTypes.DATE,
             allowNull: false,
         }
-
     },
     {
         timestamps: false
