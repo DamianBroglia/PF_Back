@@ -8,21 +8,8 @@ const postPackageHandler = async (req, res) => {
     try {
         const {
             name,
-            location,           
-            duration,
-            img,
-            description,
-            quotas,
-            dateInit,
-            dateEnd,
-            hotelId,
-            restaurantId,
-            activitiesId,
-            userId,
-            price
-        } = req.body;
-        const newPackage = await postPackage(name,
             location,
+            price,
             duration,
             img,
             description,
@@ -30,10 +17,24 @@ const postPackageHandler = async (req, res) => {
             dateInit,
             dateEnd,
             hotelId,
+            userId,
             restaurantId,
             activitiesId,
+        } = req.body;
+        const newPackage = await postPackage(
+            name,
+            location,
+            price,
+            duration,
+            img,
+            description,
+            quotas,
+            dateInit,
+            dateEnd,
+            hotelId,
             userId,
-            price);
+            restaurantId,
+            activitiesId,);
         res.status(200).json(newPackage)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -67,7 +68,7 @@ const getPackageFiltered = async (req, res) => {
         let params = req.body[0];
 
         packages = filterPackages(packages, params);
-        
+
         res.status(200).send(packages)
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -76,7 +77,7 @@ const getPackageFiltered = async (req, res) => {
 
 const getPackageByIdHandler = async (req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params
         const package = await getPackageById(id)
         res.status(200).json(package)
     } catch (error) {
