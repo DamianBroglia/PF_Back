@@ -30,14 +30,12 @@ const postPackage = async (
       quotas,
       dateInit,
       dateEnd,
+      hotelId,
+      userId,
     });
     await newPackageDb.addActivity(activitiesId)
     await newPackageDb.addRestaurant(restaurantId)
-    await newPackageDb.addHotel(hotelId)
-    await newPackageDb.addUser(userId)
     return newPackageDb;
-
-
   }
 };
 
