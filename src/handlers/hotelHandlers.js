@@ -16,8 +16,8 @@ const getAllHotelHandler = async (req, res) => {
 
 const createHotelHandler = async (req, res) => {
   try {
-    const { name, location, image, description, stars, priceDay } = req.body;
-    const newHotel = await createHotel(name, location, image, description, stars, priceDay);
+    const { name, location, img, description, stars, priceDay } = req.body;
+    const newHotel = await createHotel(name, location, img, description, stars, priceDay);
     res.status(200).json(newHotel);
   } catch (error) {
     console.log(error);

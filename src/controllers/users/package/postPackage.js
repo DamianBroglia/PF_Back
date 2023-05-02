@@ -13,30 +13,32 @@ const postPackage = async (
   hotelId,
   restaurantId,
   activitiesId,
-  userId
+  userId,
+  price
 ) => {
   const findPackage = await Package.findAll();
   const packageExists = findPackage.find((e) => e.name === name);
   if (packageExists) {
     return;
   } else {
-    const price = await autoPrice(duration, hotelId, restaurantId, activitiesId )
     const newPackageDb = await Package.create({
       name,
       location,
+      price,
       img,
       duration,
       description,
       quotas,
       dateInit,
       dateEnd,
-      hotelId,
-      userId,
-      price
     });
     await newPackageDb.addActivity(activitiesId)
     await newPackageDb.addRestaurant(restaurantId)
+    await newPackageDb.addHotel(hotelId)
+    await newPackageDb.addUser(userId)
     return newPackageDb;
+
+
   }
 };
 
