@@ -1,20 +1,19 @@
 const { Package } = require("../../../db");
- const { autoPrice } = require("./autoPricePackage")
 
 const postPackage = async (
   name,
   location,
-  img,
+  price,
   duration,
+  img,
   description,
   quotas,
   dateInit,
   dateEnd,
   hotelId,
+  userId,
   restaurantId,
   activitiesId,
-  userId,
-  price
 ) => {
   const findPackage = await Package.findAll();
   const packageExists = findPackage.find((e) => e.name === name);
@@ -25,8 +24,8 @@ const postPackage = async (
       name,
       location,
       price,
-      img,
       duration,
+      img,
       description,
       quotas,
       dateInit,
@@ -43,3 +42,4 @@ const postPackage = async (
 };
 
 module.exports = { postPackage };
+
