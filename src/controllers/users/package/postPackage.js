@@ -24,19 +24,21 @@ const postPackage = async (
     const newPackageDb = await Package.create({
       name,
       location,
+      price,
       img,
       duration,
       description,
       quotas,
       dateInit,
       dateEnd,
-      hotelId,
-      userId,
-      price
     });
     await newPackageDb.addActivity(activitiesId)
     await newPackageDb.addRestaurant(restaurantId)
+    await newPackageDb.addHotel(hotelId)
+    await newPackageDb.addUser(userId)
     return newPackageDb;
+
+
   }
 };
 

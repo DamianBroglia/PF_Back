@@ -21,15 +21,15 @@ module.exports = (sequelize) => {
         },
         lastName: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         social: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         },
         socialRed: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
     },
     {
