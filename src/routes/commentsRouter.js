@@ -15,8 +15,6 @@ commentsRouter.get("/", getACommentsHandler);
 
 commentsRouter.get("/byUser/:userId", getCommentByUserIdHandler);
 
-commentsRouter.get("/byPackage/:packageId", getCommentByPackageIdHandler);
-
 commentsRouter.delete("/:userId/:id", deleteCommentHandler)
 
 module.exports = commentsRouter;

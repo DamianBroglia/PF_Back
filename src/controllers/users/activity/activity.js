@@ -1,4 +1,4 @@
-const { Activity } = require("../../../db")
+const { Activity, Comment } = require("../../../db")
 
 const createActivity = async (name, duration, img, description, typeAct, price) => {
     const activityDataBase = await Activity.findAll()
@@ -16,18 +16,22 @@ const createActivity = async (name, duration, img, description, typeAct, price) 
 }
 
 const getAllActivity = async () => {
-    const DataBaseActivity = await Activity.findAll()
+    const DataBaseActivity = await Activity.findAll({
+        include: Comment
+    })
 
     return [...DataBaseActivity]
 }
 
 const getActivityById = async (id) => {
-    const activity = await Activity.findByPk(id)
+    const activity = await Activity.findByPk(id, {
+        include: Comment
+    })
     return activity
 }
 
-const filterActivity = async (type, priceMin, priceMax, descenPriceOrder, durationMin, durationMax, descenDurationOrder) => {
-    const dataBaseActivities = await Activity.findAll()
+const filterActivity = async (type, priceMin, priceMax, durationMin, durationMax) => {
+    const dataBaseActivities = await Activity.findAll({ include: Comment })
     let activities = dataBaseActivities.map(e => e.dataValues)
 
     if (type) {

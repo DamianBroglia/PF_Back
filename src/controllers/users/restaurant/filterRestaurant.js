@@ -1,7 +1,7 @@
-const { Restaurant } = require("../../../db");
+const { Restaurant, Comment } = require("../../../db");
 
 const filterRestaurant = async (priceMin, priceMax) => {
-    const dataBaseRestorant = await Restaurant.findAll()
+    const dataBaseRestorant = await Restaurant.findAll({ include: Comment })
     let restaurant = dataBaseRestorant.map(e => e.dataValues)
 
     if (priceMin) {

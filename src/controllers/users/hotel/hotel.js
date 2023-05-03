@@ -1,4 +1,4 @@
-const { Hotel } = require("../../../db")
+const { Hotel, Comment } = require("../../../db")
 
 const createHotel = async (name, location, img, description, stars, priceDay) => {
     const hotelsDataBase = await Hotel.findAll()
@@ -16,18 +16,22 @@ const createHotel = async (name, location, img, description, stars, priceDay) =>
 }
 
 const getAllHotel = async () => {
-    const DataBaseHotel = await Hotel.findAll();
+    const DataBaseHotel = await Hotel.findAll({
+        include : Comment
+    });
 
     return [...DataBaseHotel]
 }
 
 const getHotelById = async (id) => {
-    const hotel = await Hotel.findByPk(id);
+    const hotel = await Hotel.findByPk(id, {
+        include:Comment
+    });
     return hotel;
 }
 
 const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
-    const dataBaseHotels = await Hotel.findAll()
+    const dataBaseHotels = await Hotel.findAll({ include : Comment})
     let hotels = dataBaseHotels.map(e => e.dataValues)
     if (starsMin) {
         hotels = hotels.filter(e => e.stars >= starsMin).sort((a, b) => a.stars - b.stars)
