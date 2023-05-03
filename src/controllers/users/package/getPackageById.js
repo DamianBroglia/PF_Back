@@ -1,4 +1,5 @@
 const { Package, Activity, Restaurant, Hotel, Comment } = require("../../../db");
+const { promRating } = require("../promRating")
 
 const getPackageById = async (id) => {
     const package = await Package.findByPk(id, {
@@ -9,6 +10,9 @@ const getPackageById = async (id) => {
             { model: Comment}
         ]
     });
+
+    package.dataValues.rating = promRating(package.comments)
+
     return package
 };
 

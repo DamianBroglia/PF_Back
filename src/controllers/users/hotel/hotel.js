@@ -1,4 +1,5 @@
 const { Hotel, Comment } = require("../../../db")
+const { promRating } = require("../promRating")
 
 const createHotel = async (name, location, img, description, stars, priceDay) => {
     const hotelsDataBase = await Hotel.findAll()
@@ -20,13 +21,21 @@ const getAllHotel = async () => {
         include : Comment
     });
 
-    return [...DataBaseHotel]
+    DataBaseHotel.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    });
+
+    return DataBaseHotel
 }
 
 const getHotelById = async (id) => {
     const hotel = await Hotel.findByPk(id, {
         include:Comment
     });
+
+    hotel.dataValues.rating = promRating(hotel.comments)
+
     return hotel;
 }
 
@@ -47,6 +56,12 @@ const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
         hotels = hotels.filter(e => e.priceDay <= priceMax).sort((a, b) => a.priceDay - b.priceDay)
         hotels.reverse()
     }
+
+    hotels.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    });
+
     return hotels
 }
 
