@@ -1,7 +1,9 @@
-const { Restaurant } = require("../../../db");
+const { Restaurant, Comment } = require("../../../db");
 
 const getRestaurant = async () => {
-    const restaurants = await Restaurant.findAll();
+    const restaurants = await Restaurant.findAll({
+        include: Comment
+    });
     return restaurants
 
 }

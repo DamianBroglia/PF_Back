@@ -1,8 +1,8 @@
 const { getAllComments } = require("../controllers/users/coments/getAllComment");
 const { postComment } = require("../controllers/users/coments/postComment");
 const { deleteComment } = require("../controllers/users/coments/deleteComment");
-const { getCommentsByPackageId } = require("../controllers/users/coments/getCommentByPackageId");
 const { getCommentsByUserId } = require("../controllers/users/coments/getCommentByUserId");
+
 
 const getACommentsHandler = async (req, res) => {
     try {
@@ -15,8 +15,8 @@ const getACommentsHandler = async (req, res) => {
 
 const postCommentHandler = async (req, res) => {
     try {
-        const { packageId, userId, userName, rating, comment, date } = req.body;
-        const newComment = await postComment(packageId, userId, userName, rating, comment, date);
+        const {userName, rating, comment, date, packageId, hotelId, restaurantId, activityId, userId } = req.body;
+        const newComment = await postComment(userName, rating, comment, date, packageId, hotelId, restaurantId, activityId, userId );
         res.status(200).json(newComment);
     } catch (error) {
         res.status(400).json({ error: error.message });
@@ -33,30 +33,21 @@ const deleteCommentHandler = async (req, res) => {
     }
 };
 
-const getCommentByPackageIdHandler = async (req, res) => {
+
+const getCommentByUserIdHandler = async (req, res) => {
     try {
-        const { packageId } = req.params;
-        const CommentPack = await getCommentsByPackageId(packageId);
-        res.status(200).json(CommentPack);
+        const { userId } = req.params;
+        const commentUser = await getCommentsByUserId(userId);
+        res.status(200).json(commentUser);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
 
-const getCommentByUserIdHandler = async (req, res) => {
-    try {
-        const { UserId } = req.params;
-        const CommentUser = await getCommentsByUserId(UserId);
-        res.status(200).json(CommentUser);
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-    }
-};
 
 module.exports = {
     getACommentsHandler,
     postCommentHandler,
     deleteCommentHandler,
-    getCommentByPackageIdHandler,
-    getCommentByUserIdHandler
+    getCommentByUserIdHandler,
 };

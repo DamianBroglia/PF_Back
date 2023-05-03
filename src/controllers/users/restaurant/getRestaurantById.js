@@ -1,8 +1,10 @@
 
-const { Restaurant } = require("../../../db");
+const { Restaurant, Comment } = require("../../../db");
 
 const getRestaurantById = async (id) => {
-    const restaurant = await Restaurant.findByPk(id);
+    const restaurant = await Restaurant.findByPk(id, {
+        include: Comment
+    });
     return restaurant
 
 }
