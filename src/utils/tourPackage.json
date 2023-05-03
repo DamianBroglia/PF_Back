@@ -1,0 +1,78 @@
+[
+    {
+      "name": "Paquete 1",
+      "location": "Playa del Carmen, México",
+      "price": 1500,
+      "duration": 7,
+      "img": [
+        "https://example.com/image1.jpg",
+        "https://example.com/image2.jpg",
+        "https://example.com/image3.jpg"
+      ],
+      "description": "Disfruta de una semana inolvidable en Playa del Carmen, hospedándote en el Hotel Riviera Maya.",
+      "quotas": 10,
+      "dateInit": "2023-08-01",
+      "dateEnd": "2023-08-07",
+      "userId": 1,
+      "restaurantId": 1,
+      "activitiesId": 1,
+      "hotelId": 1
+    },
+    {
+      "name": "Paquete 2",
+      "location": "Madrid, España",
+      "price": 2500,
+      "duration": 10,
+      "img": [
+        "https://example.com/image4.jpg",
+        "https://example.com/image5.jpg",
+        "https://example.com/image6.jpg"
+      ],
+      "description": "Recorre la hermosa ciudad de Madrid durante 10 días con este paquete de turismo.",
+      "quotas": 8,
+      "dateInit": "2023-06-20",
+      "dateEnd": "2023-06-26",
+      "userId": 2,
+      "restaurantId": 2,
+      "activitiesId": 2,
+      "hotelId": 2
+    },
+    {
+        "name": "Paquete 3",
+        "location": "Bali, Indonesia",
+        "price": 1800,
+        "duration": 8,
+        "img": [
+          "https://example.com/image7.jpg",
+          "https://example.com/image8.jpg",
+          "https://example.com/image9.jpg"
+        ],
+        "description": "Vive una experiencia única en Bali durante 8 días. Hospédate en el Hotel Ayana Resort and Spa y disfruta de las playas paradisíacas de la isla, la cultura local y la gastronomía balinesa.",
+        "quotas": 12,
+        "dateInit": "2023-08-01",
+        "dateEnd": "2023-08-09",
+        "userId": 3,
+        "restaurantId": 3,
+        "activitiesId": 3,
+        "hotelId": 1
+      },
+      {
+        "name": "Paquete 4",
+        "location": "Cusco, Perú",
+        "price": 2000,
+        "duration": 9,
+        "img": [
+          "https://example.com/image10.jpg",
+          "https://example.com/image11.jpg",
+          "https://example.com/image12.jpg"
+        ],
+        "description": "Explora la ciudadela inca de Machu Picchu y mucho más en este paquete de turismo en Cusco. ",
+        "quotas": 6,
+        "dateInit": "2024-01-11",
+        "dateEnd": "2024-01-17",
+        "userId": 1,
+        "restaurantId": 3,
+        "activitiesId": 3,
+        "hotelId": 1
+      }
+  ]

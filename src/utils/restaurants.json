@@ -1,0 +1,37 @@
+[
+    {
+      "name": "Restaurant 1",
+      "location": "Bariloche, Argentina",
+      "img": ["https://www.hotelriogrande.com.ar/sites/default/files/styles/gallery_main_image/public/2021-02/restaurante_0.jpg?itok=lltTfj_6"],
+      "description": "El Fogón de María es un restaurante acogedor y elegante en el corazón de Bariloche.",
+      "price": 2800
+    },
+    {
+      "name": "Restaurant 2",
+      "location": "Ushuaia, Argentina",
+      "img": ["https://media-cdn.tripadvisor.com/media/photo-s/16/f0/10/10/la-pulperia-del-sur.jpg"],
+      "description": "La Pulpería del Sur es un restaurante con un ambiente acogedor y rústico en el centro de Ushuaia.",
+      "price": 3800
+    },
+    {
+      "name": "Restaurant 3",
+      "location": "Puerto Varas, Chile",
+      "img": ["https://www.hoteldelpuerto.cl/wp-content/uploads/2020/09/restaurante2.jpg"],
+      "description": "La Cabaña del Lago es un restaurante elegante y sofisticado con vistas impresionantes del lago Llanquihue.",
+      "price": 3400
+    },
+    {
+      "name": "Restaurant 4",
+      "location": "Montevideo, Uruguay",
+      "img": ["https://www.elobservador.com.uy/__export/1532408868463/sites/observador/img/2018/07/23/el-mercado-del-puerto-800x600.jpg_687683962.jpg"],
+      "description": "El Mercado del Puerto es un mercado de comida en el histórico barrio del Puerto de Montevideo.",
+      "price": 4800
+    },
+    {
+      "name": "Restaurant 5",
+      "location": "Lima, Perú",
+      "img": ["https://res.cloudinary.com/simpleview/image/fetch/c_limit,q_75,w_1200/https://www.peru.travel/Contenido/Atractivo/Imagen/7643/3.png"],
+      "description": "La Mar Cebichería es un restaurante famoso por su comida peruana fresca y deliciosa.",
+      "price": 5800
+    }
+  ]
