@@ -1,3 +1,5 @@
+const { promRating } = require("../promRating")
+
 const filterPackages = (packages, params) => {
 
     if ( params.maxPrice ) {
@@ -20,6 +22,7 @@ const filterPackages = (packages, params) => {
     if (params.filterByDateFin) {
         packages = packages.filter(pk=> pk.dateEnd == params.filterByDateFin);    
     }
+
     return packages;    
 };
 
