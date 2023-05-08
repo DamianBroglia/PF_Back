@@ -1,15 +1,23 @@
-const { Package, Activity, Restaurant, Hotel } = require("../../../db");
+const { Package, Activity, Restaurant, Hotel, Comment } = require("../../../db");
+const { promRating } = require("../promRating")
 
 const getPackages = async () => {
     const packages = await Package.findAll({
         include: [
-            {model: Restaurant},
-            {model: Activity},
-            {model: Hotel}
+            { model: Restaurant },
+            { model: Activity },
+            { model: Hotel },
+            { model: Comment }
         ]
     },)
-    const packArray = packages.map(e => e.dataValues)
-    return packArray
+
+    packages.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    });
+
+   
+    return packages
 }
 
 module.exports = { getPackages };

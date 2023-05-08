@@ -42,6 +42,15 @@ Comment.belongsTo(User)
 Package.hasMany(Comment)
 Comment.belongsTo(Package)
 
+Activity.hasMany(Comment)
+Comment.belongsTo(Activity)
+
+Hotel.hasMany(Comment)
+Comment.belongsTo(Hotel)
+
+Restaurant.hasMany(Comment)
+Comment.belongsTo(Restaurant)
+
 User.hasMany(Reservation)
 Reservation.belongsTo(User)
 

@@ -1,4 +1,5 @@
-const { Activity } = require("../../../db")
+const { Activity, Comment } = require("../../../db")
+const { promRating } = require("../promRating")
 
 const createActivity = async (name, duration, img, description, typeAct, price) => {
     const activityDataBase = await Activity.findAll()
@@ -16,18 +17,30 @@ const createActivity = async (name, duration, img, description, typeAct, price) 
 }
 
 const getAllActivity = async () => {
-    const DataBaseActivity = await Activity.findAll()
+    const DataBaseActivity = await Activity.findAll({
+        include: Comment
+    })
+
+    DataBaseActivity.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    }); 
 
     return [...DataBaseActivity]
 }
 
 const getActivityById = async (id) => {
-    const activity = await Activity.findByPk(id)
+    const activity = await Activity.findByPk(id, {
+        include: Comment
+    })
+    
+    activity.dataValues.rating = promRating(activity.comments)
+
     return activity
 }
 
-const filterActivity = async (type, priceMin, priceMax, descenPriceOrder, durationMin, durationMax, descenDurationOrder) => {
-    const dataBaseActivities = await Activity.findAll()
+const filterActivity = async (type, priceMin, priceMax, durationMin, durationMax) => {
+    const dataBaseActivities = await Activity.findAll({ include: Comment })
     let activities = dataBaseActivities.map(e => e.dataValues)
 
     if (type) {
@@ -47,6 +60,12 @@ const filterActivity = async (type, priceMin, priceMax, descenPriceOrder, durati
         activities = filteredByPrice.filter(e = e.duration >= durationMax).sort((a, b) => a.duration - b.duration)
         activities.reverse()
     }
+
+    activities.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    }); 
+
     return activities
 }
 

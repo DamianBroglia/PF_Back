@@ -1,4 +1,5 @@
-const { Hotel } = require("../../../db")
+const { Hotel, Comment } = require("../../../db")
+const { promRating } = require("../promRating")
 
 const createHotel = async (name, location, img, description, stars, priceDay) => {
     const hotelsDataBase = await Hotel.findAll()
@@ -16,18 +17,30 @@ const createHotel = async (name, location, img, description, stars, priceDay) =>
 }
 
 const getAllHotel = async () => {
-    const DataBaseHotel = await Hotel.findAll();
+    const DataBaseHotel = await Hotel.findAll({
+        include : Comment
+    });
 
-    return [...DataBaseHotel]
+    DataBaseHotel.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    });
+
+    return DataBaseHotel
 }
 
 const getHotelById = async (id) => {
-    const hotel = await Hotel.findByPk(id);
+    const hotel = await Hotel.findByPk(id, {
+        include:Comment
+    });
+
+    hotel.dataValues.rating = promRating(hotel.comments)
+
     return hotel;
 }
 
 const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
-    const dataBaseHotels = await Hotel.findAll()
+    const dataBaseHotels = await Hotel.findAll({ include : Comment})
     let hotels = dataBaseHotels.map(e => e.dataValues)
     if (starsMin) {
         hotels = hotels.filter(e => e.stars >= starsMin).sort((a, b) => a.stars - b.stars)
@@ -43,6 +56,12 @@ const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
         hotels = hotels.filter(e => e.priceDay <= priceMax).sort((a, b) => a.priceDay - b.priceDay)
         hotels.reverse()
     }
+
+    hotels.forEach((el) => {
+        el.dataValues.rating = promRating(el.comments)
+        delete el.dataValues.comments
+    });
+
     return hotels
 }
 
