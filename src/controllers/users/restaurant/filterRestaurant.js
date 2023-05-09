@@ -1,21 +1,16 @@
-const { Restaurant, Comment } = require("../../../db");
-const { promRating } = require("../promRating")
 
-const filterRestaurant = async (priceMin, priceMax) => {
-    const restaurant = await Restaurant.findAll({ include: Comment })
 
-    if (priceMin) {
-        restaurant = restaurant.filter(e => e.price >= priceMin).sort((a, b) => a.price - b.price)
+const filterRestaurant = async (restaurant, filter) => {
+
+    if (filter.priceMin > filter.priceMax) throw new Error("El minimo no puede ser mayor que el maximo")
+ 
+    if (filter.priceMin) {
+        restaurant = restaurant.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
     }
-    if (priceMax) {
-        restaurant = restaurant.filter(e => e.price >= priceMax).sort((a, b) => a.price - b.price)
+    if (filter.priceMax) {
+        restaurant = restaurant.filter(e => e.price <= filter.priceMax).sort((a, b) => a.price - b.price)
         restaurant.reverse()
     }
-
-    restaurant.forEach((el) => {
-        el.dataValues.rating = promRating(el.comments)
-        delete el.dataValues.comments
-    });
 
     return restaurant
 }

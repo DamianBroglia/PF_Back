@@ -39,32 +39,27 @@ const getActivityById = async (id) => {
     return activity
 }
 
-const filterActivity = async (type, priceMin, priceMax, durationMin, durationMax) => {
-    const dataBaseActivities = await Activity.findAll({ include: Comment })
-    let activities = dataBaseActivities.map(e => e.dataValues)
+const filterActivity = async (activities, filter) => {
+    if (filter.priceMin > filter.priceMax || filter.durationMin > filter.durationMax) throw new Error("El minimo no puede ser mayor que el maximo")
 
-    if (type) {
-        activities = activities.filter(e => e.typeAct === type)
+    if (filter.type) {
+        activities = activities.filter(e => e.typeAct === filter.type)
     }
-    if (priceMin) {
-        activities = activities.filter(e => e.price >= priceMin).sort((a, b) => a.price - b.price)
+    if (filter.priceMin) {
+        activities = activities.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
     }
-    if (priceMax) {
-        activities = activities.filter(e => e.price <= priceMax).sort((a, b) => a.price - b.price)
+    if (filter.priceMax) {
+        activities = activities.filter(e => e.price <= filter.priceMax).sort((a, b) => a.price - b.price)
         activities.reverse()
     }
-    if (durationMin) {
-        activities = filteredByPrice.filter(e = e.duration >= durationMin).sort((a, b) => a.duration - b.duration)
+    if (filter.durationMin) {
+        activities = activities.filter(e => e.duration >= filter.durationMin).sort((a, b) => a.duration - b.duration)
     }
-    if (durationMax) {
-        activities = filteredByPrice.filter(e = e.duration >= durationMax).sort((a, b) => a.duration - b.duration)
+    if (filter.durationMax) {
+        activities = activities.filter(e => e.duration <= filter.durationMax).sort((a, b) => a.duration - b.duration)
         activities.reverse()
     }
 
-    activities.forEach((el) => {
-        el.dataValues.rating = promRating(el.comments)
-        delete el.dataValues.comments
-    }); 
 
     return activities
 }

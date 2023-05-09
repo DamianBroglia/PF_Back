@@ -37,9 +37,9 @@ const getHotelByIdHandler = async (req, res) => {
 
 const filterHotelHandler = async (req, res) => {
   try {
-    const { starsMin, starsMax, priceMin, priceMax } = req.body;
-    const filHotels = await filterHotels(starsMin, starsMax, priceMin, priceMax);
-    res.status(200).json(filHotels);
+    const {hoteles, filter} = req.body;
+    const filteredhoteles = await filterHotels(hoteles.hoteles, filter);
+    res.status(200).json(filteredhoteles);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

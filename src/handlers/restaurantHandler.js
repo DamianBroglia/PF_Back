@@ -48,14 +48,13 @@ const getRestaurantByIdHanlder = async (req, res) => {
 
 const filterRestaurantHanlder = async (req, res) => {
   try {
-    const {priceMin, priceMax} = req.body
-    const restaurant = await filterRestaurant(priceMin, priceMax);
-    res.status(200).json(restaurant);
+    const {restaurant, filter} = req.body
+    const filteredRestaurant = await filterRestaurant(restaurant.restaurant, filter);
+    res.status(200).json(filteredRestaurant);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 
 
 module.exports = { 

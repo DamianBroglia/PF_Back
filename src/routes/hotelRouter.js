@@ -14,6 +14,6 @@ hotelRouter.get("/", getAllHotelHandler);
 
 hotelRouter.get("/byId/:id", getHotelByIdHandler);
 
-hotelRouter.get("/filter", filterHotelHandler)
+hotelRouter.post("/filter", filterHotelHandler)
 
 module.exports =hotelRouter;
