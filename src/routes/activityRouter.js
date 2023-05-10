@@ -13,6 +13,6 @@ activityRouter.get("/", getAllActivityHandler);
 
 activityRouter.get("/byId/:id", getActivityByIdHandler);
 
-activityRouter.get("/filter", filterActivityHandler)
+activityRouter.post("/filter", filterActivityHandler)
 
 module.exports = activityRouter;
