@@ -2,7 +2,7 @@ const { postPackage } = require("../controllers/users/package/postPackage")
 const { getPackages } = require("../controllers/users/package/getPackages");
 const { filterPackages } = require("../controllers/users/package/getPakagesFiltered");
 const { getPackageById } = require("../controllers/users/package/getPackageById");
-
+const cloudinary = require("../utils/cloudinary");
 
 const postPackageHandler = async (req, res) => {
     try {
@@ -21,6 +21,7 @@ const postPackageHandler = async (req, res) => {
             restaurantId,
             activitiesId,
         } = req.body;
+        
         const newPackage = await postPackage(
             name,
             location,
@@ -35,6 +36,18 @@ const postPackageHandler = async (req, res) => {
             userId,
             restaurantId,
             activitiesId,);
+            for(let i=0; i < img.length; i++) {
+            const uploadRes = cloudinary.uploader.upload(img[i], {
+            upload_preset: "patagonia",
+            folder: "patagonia/paquete"
+          })
+          .then((data) => {
+            console.log(data);
+            console.log(data.secure_url);
+          }).catch((err) => {
+            console.log(err);
+          })
+          }
         res.status(200).json(newPackage)
     } catch (error) {
         res.status(400).json({ error: error.message })

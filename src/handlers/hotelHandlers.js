@@ -4,6 +4,7 @@ const {
   getHotelById,
   filterHotels
 } = require("../controllers/users/hotel/hotel");
+const cloudinary = require("../utils/cloudinary");
 
 const getAllHotelHandler = async (req, res) => {
   try {
@@ -17,6 +18,18 @@ const getAllHotelHandler = async (req, res) => {
 const createHotelHandler = async (req, res) => {
   try {
     const { name, location, img, description, stars, priceDay } = req.body;
+    for(let i=0; i < img.length; i++) {
+      const uploadRes = cloudinary.uploader.upload(img[i], {
+      upload_preset: "patagonia",
+      folder: "patagonia/hotel"
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(data.secure_url);
+    }).catch((err) => {
+      console.log(err);
+    })
+    }
     const newHotel = await createHotel(name, location, img, description, stars, priceDay);
     res.status(200).json(newHotel);
   } catch (error) {

@@ -4,6 +4,7 @@ const {
   getActivityById,
   filterActivity
 } = require("../controllers/users/activity/activity");
+const cloudinary = require("../utils/cloudinary");
 
 const getAllActivityHandler = async (req, res) => {
   try {
@@ -29,7 +30,22 @@ const getAllActivityHandler = async (req, res) => {
 const createActivityHandler = async (req, res) => {
   try {
     const { name, duration, img, description, typeAct, price } = req.body;
-    const newActivity = await createActivity(name, duration, img, description, typeAct, price);
+    
+      const newActivity = await createActivity(name, duration,img, description, typeAct, price);
+      
+  for(let i=0; i < img.length; i++) {
+      const uploadRes = cloudinary.uploader.upload(img[i], {
+      upload_preset: "patagonia",
+      folder: "patagonia/activities"
+    })
+    .then((data) => {
+      console.log(data);
+      console.log(data.secure_url);
+    }).catch((err) => {
+      console.log(err);
+    })
+    }
+  
     res.status(200).json(newActivity);
   } catch (error) {
     console.log(error);
