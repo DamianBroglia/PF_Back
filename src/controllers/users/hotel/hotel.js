@@ -41,22 +41,17 @@ const getHotelById = async (id) => {
 
 const filterHotels = async (hoteles, filter) => {
 
-    if (filter.starsMin > filter.starsMax || filter.priceMin > filter.priceMax) throw new Error("El minimo no puede ser mayor que el maximo")
+    if(filter.starsMin > filter.starsMax || filter.priceMin > filter.priceMax) throw new Error ("El minimo no puede superar al maximo")
 
-    if (filter.starsMin) {
-        hoteles = hoteles.filter(e => e.stars >= filter.starsMin).sort((a, b) => a.stars - b.stars)
-    }
-    if (filter.starsMax) {
-        hoteles = hoteles.filter(e => e.stars <= filter.starsMax).sort((a, b) => a.stars - b.stars)
-        hoteles.reverse()
-    }
-    if (filter.priceMin) {
-        hoteles = hoteles.filter(e => e.priceDay >= filter.priceMin).sort((a, b) => a.priceDay - b.priceDay)
-    }
-    if (filter.priceMax) {
-        hoteles = hoteles.filter(e => e.priceDay <= filter.priceMax).sort((a, b) => a.priceDay - b.priceDay)
-        hoteles.reverse()
-    }
+    if (filter.starsMin) hoteles = hoteles.filter(e => e.stars >= filter.starsMin).sort((a, b) => a.stars - b.stars)
+
+    if (filter.starsMax) hoteles = hoteles.filter(e => e.stars <= filter.starsMax).sort((a, b) => b.stars - a.stars)
+
+    if (filter.priceMin) hoteles = hoteles.filter(e => e.priceDay >= filter.priceMin).sort((a, b) => a.priceDay - b.priceDay)
+
+    if (filter.priceMax) hoteles = hoteles.filter(e => e.priceDay <= filter.priceMax).sort((a, b) => b.priceDay - a.priceDay)
+
+    if (filter.bestRating) hoteles = hoteles.sort((a, b) => b.rating - a.rating)
 
     return hoteles
 }

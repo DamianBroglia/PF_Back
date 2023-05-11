@@ -4,7 +4,7 @@ const  reservationRouter = Router();
 
 reservationRouter.post("/", postReservationHandler)
 reservationRouter.get("/", getAllReservationHandler)
-reservationRouter.get("/ForThisWeek", getReservationForThisWeekHandler)
+reservationRouter.get("/forThisWeek", getReservationForThisWeekHandler)
 reservationRouter.get("/ByUserId/:userId", getReservationByUserIdHandler)
 
 

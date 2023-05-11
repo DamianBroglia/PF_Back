@@ -1,4 +1,4 @@
-const { getUserqById } = require("../controllers/users/users/getUserById")
+
 const {postUser} = require("../controllers/users/users/postUser")
 const { getUserById } = require("../controllers/users/users/getUserById")
 const { getUserNotification } = require("../controllers/users/users/getUserNotification")

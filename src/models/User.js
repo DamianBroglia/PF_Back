@@ -33,7 +33,7 @@ module.exports = (sequelize) => {
         },
         notification: {
             type: DataTypes.BOOLEAN,
-            allowNull: false,
+            allowNull: true,
         }
     },
     {
