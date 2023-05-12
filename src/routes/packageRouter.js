@@ -4,7 +4,7 @@ const  pacakgeRouter = Router();
 
 pacakgeRouter.post("/", postPackageHandler)
 pacakgeRouter.get("/", getPackageHandler)
-pacakgeRouter.get("/fiter", getPackageFiltered)
+pacakgeRouter.post("/filter", getPackageFiltered)
 pacakgeRouter.get("/:id", getPackageByIdHandler)
 
 module.exports = pacakgeRouter;

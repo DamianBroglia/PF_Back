@@ -64,12 +64,11 @@ const getPackageHandler = async (req, res) => {
 
 const getPackageFiltered = async (req, res) => {
     try {
-        let packages = req.body[1];
-        let params = req.body[0];
+        const {filters, packages} = req.body
 
-        packages = filterPackages(packages, params);
+        const packagesFiltered = filterPackages(packages, filters);
 
-        res.status(200).send(packages)
+        res.status(200).send(packagesFiltered)
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
