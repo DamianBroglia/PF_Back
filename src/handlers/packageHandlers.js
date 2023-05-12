@@ -83,11 +83,14 @@ const getPackageHandler = async (req, res) => {
 
 const getPackageFiltered = async (req, res) => {
     try {
-        const {filters, packages} = req.body
-
+        const {filters, packages, stars} = req.body
         const packagesFiltered = filterPackages(packages, filters);
-
-        res.status(200).send(packagesFiltered)
+        if (stars) {
+            const aux = packagesFiltered.filter((elem) => elem.hotel.stars === Number(stars));
+            res.status(200).send(aux);
+        } else {
+            res.status(200).send(packagesFiltered);
+        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }
