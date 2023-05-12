@@ -22,12 +22,30 @@ const postPackageHandler = async (req, res) => {
             activitiesId,
         } = req.body;
         
-        const newPackage = await postPackage(
+       
+            const subir = async (img) => {
+                const promesas = img.map((imagen) => {
+                  return cloudinary.uploader.upload(imagen, {
+                    upload_preset: "patagonia",
+                    folder: "patagonia/paquete"
+                  });
+                });
+          
+                return Promise.all(promesas)
+                  .then((resultados) => resultados.map((resultado) => resultado.url))
+                  .catch((err) => {
+                    console.log(err);
+                    throw err; // Lanzar el error para que se maneje en el catch
+                  });
+              };
+             
+              const imgUrl = await subir(img);
+               const newPackage = await postPackage(
             name,
             location,
             price,
             duration,
-            img,
+            imgUrl,
             description,
             quotas,
             dateInit,
@@ -36,18 +54,6 @@ const postPackageHandler = async (req, res) => {
             userId,
             restaurantId,
             activitiesId,);
-            for(let i=0; i < img.length; i++) {
-            const uploadRes = cloudinary.uploader.upload(img[i], {
-            upload_preset: "patagonia",
-            folder: "patagonia/paquete"
-          })
-          .then((data) => {
-            console.log(data);
-            console.log(data.secure_url);
-          }).catch((err) => {
-            console.log(err);
-          })
-          }
         res.status(200).json(newPackage)
     } catch (error) {
         res.status(400).json({ error: error.message })
