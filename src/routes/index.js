@@ -8,7 +8,8 @@ const activityRouter = require("./activityRouter");
 const hotelRouter = require("./hotelRouter");
 const commentsRouter = require("./commentsRouter")
 const restaurantRouter = require("./restaurantRouter")
-const reservationRouter = require("./reservationRouter")
+const reservationRouter = require("./reservationRouter");
+const mailRouter = require("./mailRouter");
 
 // Configurar los routers
 
@@ -32,5 +33,8 @@ router.use("/restaurant", restaurantRouter)
 
 //Reservations
 router.use("/reservation", reservationRouter)
+
+//Emails
+//router.use("/mails", mailRouter)
 
 module.exports = router;
