@@ -53,7 +53,13 @@ const filterActivity = async (activities, filter) => {
 
     if (filter.durationMax) activities = activities.filter(e => e.duration <= filter.durationMax).sort((a, b) => b.duration - a.duration)
 
-    if (filter.bestRating) activities = activities.sort((a, b) => b.rating - a.rating)
+    if (filter.order) {
+        if(filter.order === "priceMax") activities.sort((a, b) => b.price - a.price)
+        if(filter.order === "priceMin") activities.sort((a, b) => a.price - b.price)
+        if(filter.order === "durationMax") activities.sort((a, b) => b.duration - a.duration)
+        if(filter.order === "durationMin") activities.sort((a, b) => a.duration - b.duration)
+        if(filter.order === "bestRating") activities.sort((a,b) => b.rating - a.rating)
+    }
 
     return activities
 }
