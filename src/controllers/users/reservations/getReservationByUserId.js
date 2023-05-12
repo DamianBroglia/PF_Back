@@ -2,10 +2,10 @@ const { Reservation } = require("../../../db");
 
 
 const getReservationByUserId = async (userId) => {
-    const userReservationDV = await Reservation.create.findAll({
+    const userReservationDB = await Reservation.findAll({
         where: {userId}
     })
-    const userReservation = userReservationDV.map(e => e.dataValues)
+    const userReservation = userReservationDB.map(e => e.dataValues)
     return userReservation
 }
 module.exports = { getReservationByUserId };

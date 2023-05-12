@@ -7,7 +7,8 @@ const postUser = async (
   password,
   lastName,
   social,
-  socialRed
+  socialRed,
+  notification
 ) => {
   const findUser = await User.findAll();
   const userExists = findUser.find((e) => e.email === email);
@@ -21,6 +22,7 @@ const postUser = async (
       lastName,
       social,
       socialRed,
+      notification
     });
     return(newUserDb)
   }
