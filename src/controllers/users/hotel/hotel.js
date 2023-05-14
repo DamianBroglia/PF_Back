@@ -57,7 +57,7 @@ const filterHotels = async (hoteles, filter) => {
     }
     if (filter.priceMax) {
         hoteles = hoteles.filter(e => e.priceDay <= filter.priceMax).sort((a, b) => b.priceDay - a.priceDay)
-        msg = msg + `Precio Maximoo: ${filter.priceMax}.`
+        msg = msg + `Precio Maximo: ${filter.priceMax}.`
     }
 
     if (filter.order) {
