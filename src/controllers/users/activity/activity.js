@@ -41,17 +41,28 @@ const getActivityById = async (id) => {
 
 const filterActivity = async (activities, filter) => {
 
-    if(filter.priceMin > filter.priceMax || filter.durationMin > filter.durationMax ) throw new Error ("El minimo no puede superar al maximo")
+    let msg = "No hay resultados que cumplan con estos parametros: "
 
-    if (filter.type) activities = activities.filter(e => e.typeAct === filter.type)
-
-    if (filter.priceMin) activities = activities.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
-
-    if (filter.priceMax) activities = activities.filter(e => e.price <= filter.priceMax).sort((a, b) => b.price - a.price)
-
-    if (filter.durationMin) activities = activities.filter(e => e.duration >= filter.durationMin).sort((a, b) => a.duration - b.duration)
-
-    if (filter.durationMax) activities = activities.filter(e => e.duration <= filter.durationMax).sort((a, b) => b.duration - a.duration)
+    if (filter.type) {
+        activities = activities.filter(e => e.typeAct === filter.type)
+        msg = msg + `Tipo de Actividad: ${filter.type}. `
+    }
+    if (filter.priceMin) {
+        activities = activities.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
+        msg = msg + `Precio Minimo: ${filter.priceMin}. `
+    }
+    if (filter.priceMax) {
+        activities = activities.filter(e => e.price <= filter.priceMax).sort((a, b) => b.price - a.price)
+        msg = msg + `Precio Maximo: ${filter.priceMax}. `
+    }
+    if (filter.durationMin) {
+        activities = activities.filter(e => e.duration >= filter.durationMin).sort((a, b) => a.duration - b.duration)
+        msg = msg + `Duracion Minima: ${filter.durationMin}. `
+    }
+    if (filter.durationMax) {
+        activities = activities.filter(e => e.duration <= filter.durationMax).sort((a, b) => b.duration - a.duration)
+        msg = msg + `Duracion Maxima: ${filter.durationMax}. `
+    }
 
     if (filter.order) {
         if(filter.order === "priceMax") activities.sort((a, b) => b.price - a.price)
@@ -61,7 +72,9 @@ const filterActivity = async (activities, filter) => {
         if(filter.order === "bestRating") activities.sort((a,b) => b.rating - a.rating)
     }
 
-    return activities
+    if(activities.length)return activities
+    
+    throw new Error (msg)
 }
 
 

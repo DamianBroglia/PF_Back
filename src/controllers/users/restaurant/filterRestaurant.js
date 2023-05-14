@@ -2,11 +2,19 @@
 
 const filterRestaurant = async (restaurant, filter) => {
 
-    if (filter.priceMin > filter.priceMax) throw new Error("El minimo no puede superar al maximo")
+    let msg = "No hay resultados que cumplan con estos parametros: "
 
-    if (filter.priceMin) restaurant = restaurant.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
+    if (filter.priceMin) {
+        restaurant = restaurant.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
+        msg = msg + `Precio Minimo: ${filter.priceMin}. `
+    }
+    
 
-    if (filter.priceMax) restaurant = restaurant.filter(e => e.price <= filter.priceMax).sort((a, b) => b.price - a.price)
+    if (filter.priceMax) {
+        restaurant = restaurant.filter(e => e.price <= filter.priceMax).sort((a, b) => b.price - a.price)
+        msg = msg + `Precio Maximo: ${filter.priceMax}. `
+    }
+    
 
     if (filter.order) {
         if (filter.order === "priceMax") restaurant.sort((a, b) => b.price - a.price)
@@ -14,7 +22,9 @@ const filterRestaurant = async (restaurant, filter) => {
         if (filter.order === "bestRating") restaurant.sort((a, b) => b.rating - a.rating)
     }
 
-    return restaurant
+    if(restaurant.length) return restaurant
+
+    throw new Error (msg)
 }
 
 module.exports = { filterRestaurant }
