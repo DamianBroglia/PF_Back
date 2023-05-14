@@ -41,25 +41,37 @@ const getHotelById = async (id) => {
 
 const filterHotels = async (hoteles, filter) => {
 
-    if(filter.starsMin > filter.starsMax || filter.priceMin > filter.priceMax) throw new Error ("El minimo no puede superar al maximo")
+    let msg = "No hay resultados que cumplan con estos parametros: "
 
-    if (filter.starsMin) hoteles = hoteles.filter(e => e.stars >= filter.starsMin).sort((a, b) => a.stars - b.stars)
-
-    if (filter.starsMax) hoteles = hoteles.filter(e => e.stars <= filter.starsMax).sort((a, b) => b.stars - a.stars)
-
-    if (filter.priceMin) hoteles = hoteles.filter(e => e.priceDay >= filter.priceMin).sort((a, b) => a.priceDay - b.priceDay)
-
-    if (filter.priceMax) hoteles = hoteles.filter(e => e.priceDay <= filter.priceMax).sort((a, b) => b.priceDay - a.priceDay)
-
-    if (filter.order) {
-        if(filter.order === "starsMax") hoteles.sort((a, b) => b.stars - a.stars)
-        if(filter.order === "starsMin") hoteles.sort((a, b) => a.stars - b.stars)
-        if(filter.order === "priceMax") hoteles.sort((a, b) => b.priceDay - a.priceDay)
-        if(filter.order === "priceMin") hoteles.sort((a, b) => a.priceDay - b.priceDay)
-        if(filter.order === "BestRating") hoteles.sort((a,b) => b.rating - a.rating)  
+    if (filter.starsMin) {
+        hoteles = hoteles.filter(e => e.stars >= filter.starsMin).sort((a, b) => a.stars - b.stars)
+        msg = msg + ` Minimo de Estrellas: ${filter.starsMin}. `
+    }
+    if (filter.starsMax) {
+        hoteles = hoteles.filter(e => e.stars <= filter.starsMax).sort((a, b) => b.stars - a.stars)
+        msg = msg + `Maximo de Estrellas: ${filter.starsMax}. `
+    }
+    if (filter.priceMin) {
+        hoteles = hoteles.filter(e => e.priceDay >= filter.priceMin).sort((a, b) => a.priceDay - b.priceDay)
+        msg = msg + `Precio Minimo: ${filter.priceMin}. `
+    }
+    if (filter.priceMax) {
+        hoteles = hoteles.filter(e => e.priceDay <= filter.priceMax).sort((a, b) => b.priceDay - a.priceDay)
+        msg = msg + `Precio Maximoo: ${filter.priceMax}.`
     }
 
-    return hoteles
+    if (filter.order) {
+        if (filter.order === "starsMax") hoteles.sort((a, b) => b.stars - a.stars)
+        if (filter.order === "starsMin") hoteles.sort((a, b) => a.stars - b.stars)
+        if (filter.order === "priceMax") hoteles.sort((a, b) => b.priceDay - a.priceDay)
+        if (filter.order === "priceMin") hoteles.sort((a, b) => a.priceDay - b.priceDay)
+        if (filter.order === "BestRating") hoteles.sort((a, b) => b.rating - a.rating)
+    }
+
+    if (hoteles.length > 0) return hoteles
+
+    throw new Error(msg)
+
 }
 
 
