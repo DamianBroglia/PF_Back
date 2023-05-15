@@ -4,6 +4,7 @@ const {
   getActivityById,
   filterActivity
 } = require("../controllers/users/activity/activity");
+const cloudinary = require("../utils/cloudinary");
 
 const getAllActivityHandler = async (req, res) => {
   try {
@@ -29,8 +30,29 @@ const getAllActivityHandler = async (req, res) => {
 const createActivityHandler = async (req, res) => {
   try {
     const { name, duration, img, description, typeAct, price } = req.body;
-    const newActivity = await createActivity(name, duration, img, description, typeAct, price);
-    res.status(200).json(newActivity);
+    
+    
+    const subir = async (img) => {
+      const promesas = img.map((imagen) => {
+        return cloudinary.uploader.upload(imagen, {
+          upload_preset: "patagonia",
+          folder: "patagonia/activities"
+        });
+      });
+
+      return Promise.all(promesas)
+        .then((resultados) => resultados.map((resultado) => resultado.url))
+        .catch((err) => {
+          console.log(err);
+          throw err; // Lanzar el error para que se maneje en el catch
+        });
+    };
+   
+    const imgUrl = await subir(img);
+    console.log(imgUrl);
+      const newActivity = await createActivity(name, duration,imgUrl, description, typeAct, price);
+
+      res.status(200).json(newActivity);
   } catch (error) {
     console.log(error);
     res.status(400).json({ error: error.message });
@@ -49,8 +71,8 @@ const getActivityByIdHandler = async (req, res) => {
 ;
 const filterActivityHandler = async (req, res) => {
   try {
-    const { type, priceMin, priceMax, durationMin, durationMax} = req.body;
-    const filterActivities = await filterActivity(type, priceMin, priceMax, durationMin, durationMax);
+    const { activities, filter} = req.body;
+    const filterActivities = await filterActivity(activities.activities, filter);
     res.status(200).json(filterActivities);
   } catch (error) {
     res.status(400).json({ error: error.message });

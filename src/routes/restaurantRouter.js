@@ -13,6 +13,6 @@ restaurantRouter.get("/", getRestaurantsHanlder)
 
 restaurantRouter.get("/byId/:id", getRestaurantByIdHanlder)
 
-restaurantRouter.get("/filter", filterRestaurantHanlder)
+restaurantRouter.post("/filter", filterRestaurantHanlder)
 
 module.exports = restaurantRouter;

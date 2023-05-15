@@ -1,9 +1,14 @@
-const { Reservation } = require("../../../db");
+const { Reservation, User, Package  } = require("../../../db");
 
 
 const getAllReservation = async () => {
-    const allReservationDV = await Reservation.create.findAll()
-    const allReservation = allReservationDV.map(e => e.dataValues)
+    const allReservationDB = await Reservation.findAll({
+        include: [
+            { model: User },
+            { model: Package },
+        ]
+    })
+    const allReservation = allReservationDB.map(e => e.dataValues)
     return allReservation
 }
 module.exports = { getAllReservation };

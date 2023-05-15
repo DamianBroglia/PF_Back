@@ -4,6 +4,7 @@ const {
   getHotelById,
   filterHotels
 } = require("../controllers/users/hotel/hotel");
+const cloudinary = require("../utils/cloudinary");
 
 const getAllHotelHandler = async (req, res) => {
   try {
@@ -17,7 +18,24 @@ const getAllHotelHandler = async (req, res) => {
 const createHotelHandler = async (req, res) => {
   try {
     const { name, location, img, description, stars, priceDay } = req.body;
-    const newHotel = await createHotel(name, location, img, description, stars, priceDay);
+    const subir = async (img) => {
+      const promesas = img.map((imagen) => {
+        return cloudinary.uploader.upload(imagen, {
+          upload_preset: "patagonia",
+          folder: "patagonia/hotel"
+        });
+      });
+
+      return Promise.all(promesas)
+        .then((resultados) => resultados.map((resultado) => resultado.url))
+        .catch((err) => {
+          console.log(err);
+          throw err; // Lanzar el error para que se maneje en el catch
+        });
+    };
+   
+    const imgUrl = await subir(img);
+    const newHotel = await createHotel(name, location, imgUrl, description, stars, priceDay);
     res.status(200).json(newHotel);
   } catch (error) {
     console.log(error);
@@ -37,9 +55,9 @@ const getHotelByIdHandler = async (req, res) => {
 
 const filterHotelHandler = async (req, res) => {
   try {
-    const { starsMin, starsMax, priceMin, priceMax } = req.body;
-    const filHotels = await filterHotels(starsMin, starsMax, priceMin, priceMax);
-    res.status(200).json(filHotels);
+    const {hoteles, filter} = req.body;
+    const filteredhoteles = await filterHotels(hoteles.hoteles, filter);
+    res.status(200).json(filteredhoteles);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

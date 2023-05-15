@@ -1,7 +1,6 @@
 const { Reservation, Package } = require("../../../db");
 
 const postReservation = async (
-    dateOfPurchase,
     paid,
     numOfTravels,
     userId,
@@ -10,7 +9,7 @@ const postReservation = async (
     const packageSould = await Package.findByPk(packageId)
     const totalPrice = packageSould.price * numOfTravels
     const newReservation = await Reservation.create({
-        dateOfPurchase,
+        dateOfPurchase:new Date(),
         paid,
         numOfTravels,
         totalPrice,
