@@ -30,6 +30,17 @@ const postRestaurantHandler = async (req, res) => {
 const getRestaurantsHanlder = async (req, res) => {
   try {
     const restaurants = await getRestaurant();
+    const name = req.query.hasOwnProperty("name") ? req.query.name.toLowerCase() : null;
+    if (name){
+      let filteredRestaurantByName = restaurants.filter((e) => 
+          e.name.toLowerCase().includes(name)
+      );
+      filteredRestaurantByName.length > 0 
+          ? res.status(200).send(filteredRestaurantByName)
+          : res.status(404).send("The Restaurant do not exists");
+  } else {
+      res.status(200).send(restaurants)
+  }
     res.status(200).json(restaurants);
   } catch (error) {
     res.status(400).json({ error: error.message });
