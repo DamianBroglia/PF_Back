@@ -5,8 +5,8 @@ const { getUserNotification } = require("../controllers/users/users/getUserNotif
 
 const postUserHandler = async(req, res) =>{
     try {
-        const { userName, email, password, lastName, social, socialRed, notification } = req.body
-        const newUser = await postUser(userName, email, password, lastName, social, socialRed, notification)
+        const { name, email, validator, lastName, picture } = req.body
+        const newUser = await postUser(name, email, validator, lastName, picture)
         res.status(200).json(newUser)
     } catch (error) {
         res.status(400).json({error: error.massage})

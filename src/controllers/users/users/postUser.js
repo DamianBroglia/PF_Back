@@ -2,30 +2,33 @@ require("dotenv").config();
 const { User } = require("../../../db");
 
 const postUser = async (
-  userName,
+  name,
   email,
-  password,
+  validator,
   lastName,
-  social,
-  socialRed,
-  notification
+  picture
 ) => {
-  const findUser = await User.findAll();
-  const userExists = findUser.find((e) => e.email === email);
-  if (userExists) {
-    return;
+  const findUser = await User.findAll({
+    where: {
+      validator:validator,
+    },
+  });
+  
+  if (findUser[0]) {
+    console.log(findUser[0])
+          return findUser[0]
   } else {
+    
     const newUserDb = await User.create({
-      userName,
+      name,
       email,
-      password,
+      validator,
       lastName,
-      social,
-      socialRed,
-      notification
+      picture
     });
     return(newUserDb)
   }
 };
 
 module.exports = { postUser };
+

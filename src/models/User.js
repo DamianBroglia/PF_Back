@@ -7,7 +7,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        userName: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password: {
+        validator: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -23,18 +23,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        social: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true,
-        },
-        socialRed: {
+        picture: {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        notification: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true,
-        }
     },
     {
         timestamps: false
