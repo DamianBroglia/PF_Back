@@ -6,17 +6,18 @@ const postUser = async (
   email,
   validator,
   lastName,
-  picture
+  picture,
+  notification,
+  isAdmin
 ) => {
   const findUser = await User.findAll({
     where: {
-      validator:validator,
+      validator: validator,
     },
   });
   
   if (findUser[0]) {
-    console.log(findUser[0])
-          return findUser[0]
+    return findUser[0]
   } else {
     
     const newUserDb = await User.create({
@@ -24,7 +25,9 @@ const postUser = async (
       email,
       validator,
       lastName,
-      picture
+      picture,
+      notification,
+      isAdmin
     });
     return(newUserDb)
   }
