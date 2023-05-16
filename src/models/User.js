@@ -9,7 +9,6 @@ module.exports = (sequelize) => {
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
@@ -21,12 +20,18 @@ module.exports = (sequelize) => {
         },
         lastName: {
             type: DataTypes.STRING,
-            allowNull: true,
         },
         picture: {
             type: DataTypes.STRING,
+        },
+        notification: {
+            type: DataTypes.BOOLEAN,
             allowNull: true,
         },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        }
     },
     {
         timestamps: false
