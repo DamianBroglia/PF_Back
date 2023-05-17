@@ -11,7 +11,8 @@ const postUserHandler = async(req, res) =>{
         const userInfo = {
             id: newUser.id,
             isAdmin: newUser.isAdmin,
-            notification: newUser.notification
+            notification: newUser.notification,
+            email: newUser.email,
         }
         res.status(200).json(userInfo)
     } catch (error) {
@@ -23,7 +24,13 @@ const getUserByIdHandler = async(req, res) => {
     try{
         const { id } = req.params
         const userById = await getUserById(id);
-        res.status(200).json(userById)
+        const userInfo = {
+            id: userById.id || "",
+            isAdmin: userById.isAdmin || "",
+            notification: userById.notification || "",
+            email: userById.email || "",
+        }
+        res.status(200).json(userInfo)
     } catch (error){
         res.status(400).json({error: error.message})
     }
