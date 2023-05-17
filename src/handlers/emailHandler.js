@@ -56,7 +56,38 @@
 //     }
 // }
 
+// const confirmReservation = async (req, res) => {
+//     try {
+//         const { userEmail, dateInit, price } = req.body;
+//         if (userEmail) {
+//             const html = `
+//             <b>Tu reserva se realizo con exito</b>
+//             <br/>
+//             <b>dia de inicio:</b>
+//             <b>${dateInit}</b>
+//             <br/>
+//             <b>precio<b>
+//             <b>${price}</b>
+//             <br/>
+//             <b>Gracias por tu compra!!</b>
+//         `;
+//         const info = await transporter.sendMail({
+//             from: `Patagonia Horizons <gurennnn@gmail.com>`,
+//             to: userEmail,
+//             subject: "Reserva exitosa",
+//             html: html,
+//         });
+//         if (info.accepted) {
+//             res.status(200).json({message: "todo bien"});
+//         }
+//         } else res.status(401).json({error: "no existe el usuario"});
+//     } catch(error) {
+//         res.status(400).json({error: error.message});
+//     }
+// }
+
 // module.exports = {
 //     sendMailToUs,
-//     sendMailFromAdmin
+//     sendMailFromAdmin,
+//     confirmReservation,
 // }
