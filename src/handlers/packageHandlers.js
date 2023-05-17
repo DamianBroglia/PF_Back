@@ -63,18 +63,19 @@ const postPackageHandler = async (req, res) => {
 const getPackageHandler = async (req, res) => {
     try {
         const packages = await getPackages();
+        const validPackages = packages.filter((elem) => elem.name !== "custom package");
         const name = req.query.hasOwnProperty("name")
             ? req.query.name.toLowerCase()
             : null;
         if (name) {
-            let filteredPackageByName = packages.filter((e) =>
+            let filteredPackageByName = validPackages.filter((e) =>
                 e.name.toLowerCase().includes(name)
             );
             filteredPackageByName.length > 0
                 ? res.status(200).send(filteredPackageByName)
                 : res.status(404).send("The package do not exists");
         } else {
-            res.status(200).send(packages)
+            res.status(200).send(validPackages)
         }
     } catch (error) {
         res.status(400).json({ error: error.message })

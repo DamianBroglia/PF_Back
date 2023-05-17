@@ -8,7 +8,12 @@ const postUserHandler = async(req, res) =>{
     try {
         const { name, email, validator, lastName, picture, notification, isAdmin } = req.body
         const newUser = await postUser(name, email, validator, lastName, picture, notification, isAdmin);
-        res.status(200).json(newUser)
+        const userInfo = {
+            id: newUser.id,
+            isAdmin: newUser.isAdmin,
+            notification: newUser.notification
+        }
+        res.status(200).json(userInfo)
     } catch (error) {
         res.status(400).json({error: error.massage})
     }

@@ -11,15 +11,7 @@ const getReservationForThisWeek = async () => {
     let response = [];
     const reservationThisweek = reservationDB.filter(e => e.package.dateInit <= addDays(new Date(), 3))
     reservationThisweek.forEach((e) => {
-        const reser = {
-            username: e.user.userName,
-            email: e.user.email,
-            packName: e.package.name,
-            paid: e.paid,
-            dateInit: e.package.dateInit,
-            totalPrice: e.totalPrice
-        }
-        response.push(reser)
+        response.push(e.user.email)
     })
     return response
 };
