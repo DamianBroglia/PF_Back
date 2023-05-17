@@ -20,12 +20,10 @@ const postReservation = async (
         throw new Error("No hay mas cupos disponibles para este paquete")
     }
     
-    const totalPrice = packageSold.price * numOfTravels
     const newReservation = await Reservation.create({
         dateOfPurchase:new Date(),
         paid,
         numOfTravels,
-        totalPrice,
         userId,
         packageId,
     });

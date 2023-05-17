@@ -1,6 +1,6 @@
 const {Router} = require("express");
 // const router = express.Router();
-const {postUserHandler} = require("../handlers/userHandler")
+const {postUserHandler, putUserNotification} = require("../handlers/userHandler")
 const {getUserByIdHandler} = require("../handlers/userHandler")
 const {getUserNotificationHandler} = require("../handlers/userHandler")
 const userRouter = Router();
@@ -9,5 +9,6 @@ const userRouter = Router();
 userRouter.post("/", postUserHandler);
 userRouter.get("/notification", getUserNotificationHandler);
 userRouter.get("/:id", getUserByIdHandler);
+userRouter.put("/spam", putUserNotification);
 
 module.exports = userRouter;
