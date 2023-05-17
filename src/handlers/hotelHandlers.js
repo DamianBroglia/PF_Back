@@ -9,7 +9,17 @@ const cloudinary = require("../utils/cloudinary");
 const getAllHotelHandler = async (req, res) => {
   try {
     const AllHotel = await getAllHotel();
-    res.status(200).json(AllHotel);
+    const name = req.query.hasOwnProperty("name") ? req.query.name.toLowerCase() : null;
+    if (name){
+      let filteredHotelByName =AllHotel.filter((e) => 
+          e.name.toLowerCase().includes(name)
+      );
+      filteredHotelByName.length > 0 
+          ? res.status(200).send(filteredHotelByName)
+          : res.status(404).send("The hotel do not exists");
+  } else {
+      res.status(200).send(AllHotel)
+  }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
