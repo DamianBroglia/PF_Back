@@ -17,7 +17,7 @@ const postPackage = async (
 ) => {
   const findPackage = await Package.findAll();
   const packageExists = findPackage.find((e) => e.name === name);
-  if (packageExists) {
+  if (packageExists && packageExists.name !== "custom package") {
     return;
   } else {
     const newPackageDb = await Package.create({
