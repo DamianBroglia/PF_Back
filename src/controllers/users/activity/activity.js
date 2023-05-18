@@ -77,5 +77,11 @@ const filterActivity = async (activities, filter) => {
     throw new Error (msg)
 }
 
+const borrarActivity = async (id) => {
+    const activity = await Activity.findByPk(id);
+    await activity.update({name: "borrado"});
+    return activity;
+}
 
-module.exports = { createActivity, getAllActivity, getActivityById, filterActivity }
+
+module.exports = { createActivity, getAllActivity, getActivityById, filterActivity, borrarActivity }

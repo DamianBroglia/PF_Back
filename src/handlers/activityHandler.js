@@ -2,26 +2,26 @@ const {
   getAllActivity,
   createActivity,
   getActivityById,
-  filterActivity
+  filterActivity,
+  borrarActivity
 } = require("../controllers/users/activity/activity");
 const cloudinary = require("../utils/cloudinary");
 
 const getAllActivityHandler = async (req, res) => {
   try {
     const AllActivity = await getAllActivity();
+    const activityDeleted = AllActivity.filter((elem) => elem.name !== "borrado");
     const name = req.query.hasOwnProperty("name") ? req.query.name.toLowerCase() : null;
     if (name){
-      let filteredActivityByName =AllActivity.filter((e) => 
+      let filteredActivityByName =activityDeleted.filter((e) => 
           e.name.toLowerCase().includes(name)
       );
       filteredActivityByName.length > 0 
           ? res.status(200).send(filteredActivityByName)
           : res.status(404).send("The activity do not exists");
   } else {
-      res.status(200).send(AllActivity)
+      res.status(200).send(activityDeleted);
   }
-
-
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -79,9 +79,20 @@ const filterActivityHandler = async (req, res) => {
   }
 };
 
+const borrarActi = async (req,res) => {
+  try {
+    const {id} = req.body;
+    const borrada = await borrarActivity(id);
+    res.status(200).json(borrada);
+  } catch (error) {
+    res.status(400).json({error: error.message});
+  }
+}
+
 module.exports = {
   getAllActivityHandler,
   createActivityHandler,
   getActivityByIdHandler,
-  filterActivityHandler
+  filterActivityHandler,
+  borrarActi
 };
