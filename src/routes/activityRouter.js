@@ -3,7 +3,8 @@ const {
   createActivityHandler,
   getAllActivityHandler,
   getActivityByIdHandler,
-  filterActivityHandler
+  filterActivityHandler,
+  borrarActi
 } = require("../handlers/activityHandler");
 const activityRouter = Router();
 
@@ -13,6 +14,8 @@ activityRouter.get("/", getAllActivityHandler);
 
 activityRouter.get("/byId/:id", getActivityByIdHandler);
 
-activityRouter.post("/filter", filterActivityHandler)
+activityRouter.post("/filter", filterActivityHandler);
+
+activityRouter.put("/delete", borrarActi);
 
 module.exports = activityRouter;
