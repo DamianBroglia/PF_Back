@@ -1,17 +1,17 @@
-// const {Router} = require("express");
-// const { 
-//     sendMailToUs,
-//     sendMailFromAdmin,
-//     confirmReservation,
-// } = require("../handlers/emailHandler");
+const {Router} = require("express");
+const { 
+    sendMailToUs,
+    sendMailFromAdmin,
+    confirmReservation,
+} = require("../handlers/emailHandler");
 
-// const mailRouter = Router();
+const mailRouter = Router();
 
 
-// mailRouter.post("/", sendMailToUs);
+mailRouter.post("/", sendMailToUs);
 
-// mailRouter.post("/admin" , sendMailFromAdmin);
+mailRouter.post("/admin" , sendMailFromAdmin);
 
-// mailRouter.post("/confirmation", confirmReservation);
+mailRouter.post("/confirmation", confirmReservation);
 
-// module.exports = mailRouter;
+module.exports = mailRouter;

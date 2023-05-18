@@ -35,6 +35,6 @@ router.use("/restaurant", restaurantRouter)
 router.use("/reservation", reservationRouter)
 
 //Emails
-//router.use("/mails", mailRouter)
+router.use("/mails", mailRouter)
 
 module.exports = router;
