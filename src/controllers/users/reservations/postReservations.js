@@ -1,22 +1,33 @@
 const { Reservation, Package } = require("../../../db");
+// const { repostPackage } = require("../package/postPackage");
+
 
 const postReservation = async (
-    dateOfPurchase,
     paid,
     numOfTravels,
     userId,
     packageId
 ) => {
-    const packageSould = await Package.findByPk(packageId)
-    const totalPrice = packageSould.price * numOfTravels
+    const packageSold = await Package.findByPk(packageId);
+    if(packageSold.quotas > 0) {
+        packageSold.decrement('quotas');
+        await packageSold.save();
+        
+        // if(packageSold.quotas === 0){
+        //     await repostPackage(packageId);
+        // }
+    } else {
+        throw new Error("No hay mas cupos disponibles para este paquete")
+    }
+    
     const newReservation = await Reservation.create({
-        dateOfPurchase,
+        dateOfPurchase:new Date(),
         paid,
         numOfTravels,
-        totalPrice,
         userId,
-        packageId
+        packageId,
     });
+    
     return (newReservation)
 
 };

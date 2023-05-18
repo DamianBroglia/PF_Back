@@ -18,7 +18,7 @@ const createHotel = async (name, location, img, description, stars, priceDay) =>
 
 const getAllHotel = async () => {
     const DataBaseHotel = await Hotel.findAll({
-        include : Comment
+        include: Comment
     });
 
     DataBaseHotel.forEach((el) => {
@@ -31,7 +31,7 @@ const getAllHotel = async () => {
 
 const getHotelById = async (id) => {
     const hotel = await Hotel.findByPk(id, {
-        include:Comment
+        include: Comment
     });
 
     hotel.dataValues.rating = promRating(hotel.comments)
@@ -39,30 +39,39 @@ const getHotelById = async (id) => {
     return hotel;
 }
 
-const filterHotels = async (starsMin, starsMax, priceMin, priceMax) => {
-    const dataBaseHotels = await Hotel.findAll({ include : Comment})
-    let hotels = dataBaseHotels.map(e => e.dataValues)
-    if (starsMin) {
-        hotels = hotels.filter(e => e.stars >= starsMin).sort((a, b) => a.stars - b.stars)
+const filterHotels = async (hoteles, filter) => {
+
+    let msg = "No hay resultados que cumplan con estos parametros: "
+
+    if (filter.starsMin) {
+        hoteles = hoteles.filter(e => e.stars >= filter.starsMin).sort((a, b) => a.stars - b.stars)
+        msg = msg + ` Minimo de Estrellas: ${filter.starsMin}. `
     }
-    if (starsMax) {
-        hotels = hotels.filter(e => e.stars <= starsMax).sort((a, b) => a.stars - b.stars)
-        hotels.reverse()
+    if (filter.starsMax) {
+        hoteles = hoteles.filter(e => e.stars <= filter.starsMax).sort((a, b) => b.stars - a.stars)
+        msg = msg + `Maximo de Estrellas: ${filter.starsMax}. `
     }
-    if (priceMin) {
-        hotels = hotels.filter(e => e.priceDay >= priceMin).sort((a, b) => a.priceDay - b.priceDay)   
+    if (filter.priceMin) {
+        hoteles = hoteles.filter(e => e.priceDay >= filter.priceMin).sort((a, b) => a.priceDay - b.priceDay)
+        msg = msg + `Precio Minimo: ${filter.priceMin}. `
     }
-    if (priceMax) {
-        hotels = hotels.filter(e => e.priceDay <= priceMax).sort((a, b) => a.priceDay - b.priceDay)
-        hotels.reverse()
+    if (filter.priceMax) {
+        hoteles = hoteles.filter(e => e.priceDay <= filter.priceMax).sort((a, b) => b.priceDay - a.priceDay)
+        msg = msg + `Precio Maximo: ${filter.priceMax}.`
     }
 
-    hotels.forEach((el) => {
-        el.dataValues.rating = promRating(el.comments)
-        delete el.dataValues.comments
-    });
+    if (filter.order) {
+        if (filter.order === "starsMax") hoteles.sort((a, b) => b.stars - a.stars)
+        if (filter.order === "starsMin") hoteles.sort((a, b) => a.stars - b.stars)
+        if (filter.order === "priceMax") hoteles.sort((a, b) => b.priceDay - a.priceDay)
+        if (filter.order === "priceMin") hoteles.sort((a, b) => a.priceDay - b.priceDay)
+        if (filter.order === "BestRating") hoteles.sort((a, b) => b.rating - a.rating)
+    }
 
-    return hotels
+    if (hoteles.length > 0) return hoteles
+
+    throw new Error(msg)
+
 }
 
 

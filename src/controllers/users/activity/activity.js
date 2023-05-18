@@ -24,7 +24,7 @@ const getAllActivity = async () => {
     DataBaseActivity.forEach((el) => {
         el.dataValues.rating = promRating(el.comments)
         delete el.dataValues.comments
-    }); 
+    });
 
     return [...DataBaseActivity]
 }
@@ -33,40 +33,48 @@ const getActivityById = async (id) => {
     const activity = await Activity.findByPk(id, {
         include: Comment
     })
-    
+
     activity.dataValues.rating = promRating(activity.comments)
 
     return activity
 }
 
-const filterActivity = async (type, priceMin, priceMax, durationMin, durationMax) => {
-    const dataBaseActivities = await Activity.findAll({ include: Comment })
-    let activities = dataBaseActivities.map(e => e.dataValues)
+const filterActivity = async (activities, filter) => {
 
-    if (type) {
-        activities = activities.filter(e => e.typeAct === type)
+    let msg = "No hay resultados que cumplan con estos parametros: "
+
+    if (filter.type) {
+        activities = activities.filter(e => e.typeAct === filter.type)
+        msg = msg + `Tipo de Actividad: ${filter.type}. `
     }
-    if (priceMin) {
-        activities = activities.filter(e => e.price >= priceMin).sort((a, b) => a.price - b.price)
+    if (filter.priceMin) {
+        activities = activities.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
+        msg = msg + `Precio Minimo: ${filter.priceMin}. `
     }
-    if (priceMax) {
-        activities = activities.filter(e => e.price <= priceMax).sort((a, b) => a.price - b.price)
-        activities.reverse()
+    if (filter.priceMax) {
+        activities = activities.filter(e => e.price <= filter.priceMax).sort((a, b) => b.price - a.price)
+        msg = msg + `Precio Maximo: ${filter.priceMax}. `
     }
-    if (durationMin) {
-        activities = filteredByPrice.filter(e = e.duration >= durationMin).sort((a, b) => a.duration - b.duration)
+    if (filter.durationMin) {
+        activities = activities.filter(e => e.duration >= filter.durationMin).sort((a, b) => a.duration - b.duration)
+        msg = msg + `Duracion Minima: ${filter.durationMin}. `
     }
-    if (durationMax) {
-        activities = filteredByPrice.filter(e = e.duration >= durationMax).sort((a, b) => a.duration - b.duration)
-        activities.reverse()
+    if (filter.durationMax) {
+        activities = activities.filter(e => e.duration <= filter.durationMax).sort((a, b) => b.duration - a.duration)
+        msg = msg + `Duracion Maxima: ${filter.durationMax}. `
     }
 
-    activities.forEach((el) => {
-        el.dataValues.rating = promRating(el.comments)
-        delete el.dataValues.comments
-    }); 
+    if (filter.order) {
+        if(filter.order === "priceMax") activities.sort((a, b) => b.price - a.price)
+        if(filter.order === "priceMin") activities.sort((a, b) => a.price - b.price)
+        if(filter.order === "durationMax") activities.sort((a, b) => b.duration - a.duration)
+        if(filter.order === "durationMin") activities.sort((a, b) => a.duration - b.duration)
+        if(filter.order === "bestRating") activities.sort((a,b) => b.rating - a.rating)
+    }
 
-    return activities
+    if(activities.length)return activities
+    
+    throw new Error (msg)
 }
 
 

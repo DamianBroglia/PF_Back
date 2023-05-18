@@ -7,30 +7,31 @@ module.exports = (sequelize) => {
             primaryKey: true,
             autoIncrement: true
         },
-        userName: {
+        name: {
             type: DataTypes.STRING,
-            allowNull: false,
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        password: {
+        validator: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         lastName: {
             type: DataTypes.STRING,
-            allowNull: true,
         },
-        social: {
+        picture: {
+            type: DataTypes.STRING,
+        },
+        notification: {
             type: DataTypes.BOOLEAN,
             allowNull: true,
         },
-        socialRed: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
+        isAdmin: {
+            type: DataTypes.BOOLEAN,
+            allowNull: true
+        }
     },
     {
         timestamps: false

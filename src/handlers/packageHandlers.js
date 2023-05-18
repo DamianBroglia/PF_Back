@@ -2,7 +2,7 @@ const { postPackage } = require("../controllers/users/package/postPackage")
 const { getPackages } = require("../controllers/users/package/getPackages");
 const { filterPackages } = require("../controllers/users/package/getPakagesFiltered");
 const { getPackageById } = require("../controllers/users/package/getPackageById");
-
+const cloudinary = require("../utils/cloudinary");
 
 const postPackageHandler = async (req, res) => {
     try {
@@ -21,12 +21,31 @@ const postPackageHandler = async (req, res) => {
             restaurantId,
             activitiesId,
         } = req.body;
-        const newPackage = await postPackage(
+        
+       
+            const subir = async (img) => {
+                const promesas = img.map((imagen) => {
+                  return cloudinary.uploader.upload(imagen, {
+                    upload_preset: "patagonia",
+                    folder: "patagonia/paquete"
+                  });
+                });
+          
+                return Promise.all(promesas)
+                  .then((resultados) => resultados.map((resultado) => resultado.url))
+                  .catch((err) => {
+                    console.log(err);
+                    throw err; // Lanzar el error para que se maneje en el catch
+                  });
+              };
+             
+              const imgUrl = await subir(img);
+               const newPackage = await postPackage(
             name,
             location,
             price,
             duration,
-            img,
+            imgUrl,
             description,
             quotas,
             dateInit,
@@ -44,18 +63,19 @@ const postPackageHandler = async (req, res) => {
 const getPackageHandler = async (req, res) => {
     try {
         const packages = await getPackages();
+        const validPackages = packages.filter((elem) => elem.name !== "custom package");
         const name = req.query.hasOwnProperty("name")
             ? req.query.name.toLowerCase()
             : null;
         if (name) {
-            let filteredPackageByName = packages.filter((e) =>
+            let filteredPackageByName = validPackages.filter((e) =>
                 e.name.toLowerCase().includes(name)
             );
             filteredPackageByName.length > 0
                 ? res.status(200).send(filteredPackageByName)
                 : res.status(404).send("The package do not exists");
         } else {
-            res.status(200).send(packages)
+            res.status(200).send(validPackages)
         }
     } catch (error) {
         res.status(400).json({ error: error.message })
@@ -64,12 +84,14 @@ const getPackageHandler = async (req, res) => {
 
 const getPackageFiltered = async (req, res) => {
     try {
-        let packages = req.body[1];
-        let params = req.body[0];
-
-        packages = filterPackages(packages, params);
-
-        res.status(200).send(packages)
+        const {filters, packages, stars} = req.body
+        const packagesFiltered = filterPackages(packages, filters);
+        if (stars) {
+            const aux = packagesFiltered.filter((elem) => elem.hotel.stars === Number(stars));
+            res.status(200).send(aux);
+        } else {
+            res.status(200).send(packagesFiltered);
+        }
     } catch (error) {
         res.status(400).json({ error: error.message })
     }

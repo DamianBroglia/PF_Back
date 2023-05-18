@@ -1,23 +1,30 @@
-const { Restaurant, Comment } = require("../../../db");
-const { promRating } = require("../promRating")
 
-const filterRestaurant = async (priceMin, priceMax) => {
-    const restaurant = await Restaurant.findAll({ include: Comment })
 
-    if (priceMin) {
-        restaurant = restaurant.filter(e => e.price >= priceMin).sort((a, b) => a.price - b.price)
+const filterRestaurant = async (restaurant, filter) => {
+
+    let msg = "No hay resultados que cumplan con estos parametros: "
+
+    if (filter.priceMin) {
+        restaurant = restaurant.filter(e => e.price >= filter.priceMin).sort((a, b) => a.price - b.price)
+        msg = msg + `Precio Minimo: ${filter.priceMin}. `
     }
-    if (priceMax) {
-        restaurant = restaurant.filter(e => e.price >= priceMax).sort((a, b) => a.price - b.price)
-        restaurant.reverse()
+    
+
+    if (filter.priceMax) {
+        restaurant = restaurant.filter(e => e.price <= filter.priceMax).sort((a, b) => b.price - a.price)
+        msg = msg + `Precio Maximo: ${filter.priceMax}. `
+    }
+    
+
+    if (filter.order) {
+        if (filter.order === "priceMax") restaurant.sort((a, b) => b.price - a.price)
+        if (filter.order ==="priceMin") restaurant.sort((a, b) => a.price - b.price)
+        if (filter.order === "bestRating") restaurant.sort((a, b) => b.rating - a.rating)
     }
 
-    restaurant.forEach((el) => {
-        el.dataValues.rating = promRating(el.comments)
-        delete el.dataValues.comments
-    });
+    if(restaurant.length) return restaurant
 
-    return restaurant
+    throw new Error (msg)
 }
 
 module.exports = { filterRestaurant }

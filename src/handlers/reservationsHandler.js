@@ -7,6 +7,9 @@ const {
 const {
     postReservation
 } = require("../controllers/users/reservations/postReservations");
+const {
+    getReservationForThisWeek
+} = require("../controllers/users/reservations/getReservationForThisWeek");
 
 const getAllReservationHandler = async (req, res) => {
     try {
@@ -29,9 +32,18 @@ const getReservationByUserIdHandler = async (req, res) => {
 
 const postReservationHandler = async (req, res) => {
     try {
-        const { dateOfPurchase, paid, numOfTravels, userId, packageId } = req.params
-        const newReservation = await postReservation(dateOfPurchase, paid, numOfTravels, userId, packageId);
+        const { paid, numOfTravels, userId, packageId } = req.body
+        const newReservation = await postReservation( paid, numOfTravels, userId, packageId);
         res.status(200).json(newReservation);
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+    }
+};
+
+const getReservationForThisWeekHandler = async (req, res) => {
+    try {
+        const reservationWeek = await getReservationForThisWeek();
+        res.status(200).json(reservationWeek);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
@@ -41,5 +53,6 @@ const postReservationHandler = async (req, res) => {
 module.exports = { 
     postReservationHandler,
     getReservationByUserIdHandler,
-    getAllReservationHandler
+    getAllReservationHandler,
+    getReservationForThisWeekHandler
   };
